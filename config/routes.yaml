@@ -1,0 +1,9 @@
+#index:
+#    path: /
+#    controller: App\Controller\DefaultController::index
+
+# Controllers
+todo.todo.rest.controller:
+  resource: "Controller/Todo/TodoRestController.php"
+  type:     annotation
+  prefix:   /api/v1

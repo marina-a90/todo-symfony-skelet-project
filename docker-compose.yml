@@ -1,0 +1,45 @@
+version: '2.2'
+services:
+  nginx:
+    container_name: todo_nginx
+    image: nginx:1.13.0
+    ports:
+      - "80:80"
+    volumes:
+      - ./:/app/
+      - ./logs/nginx/:/var/log/nginx
+      - ./docker/nginx/site.conf:/etc/nginx/conf.d/site.conf
+    links:
+      - php7
+
+  php7:
+    container_name: todo_php7
+    build: ./docker/php
+    #    hostname: todo-api.com
+    links:
+      - devdb
+    volumes:
+      - ./:/app/
+      - ./docker/php/zshrc.tpl:/root/.zshrc
+      - ./docker/php/conf.d/custom.ini:/usr/local/etc/php/conf.d/custom.ini
+      - ./docker/php/conf.d/custom-xdebug-local.ini:/usr/local/etc/php/conf.d/custom-xdebug-local.ini
+    environment:
+      APP_ENV: dev
+      APP_SECRET: 2135fd907cbb9ce469f0879930440e2c
+
+  devdb:
+    container_name: todo_devdb
+    image: mysql:5.6
+    restart: always
+    ports:
+      - 3308:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: todo
+      MYSQL_DATABASE: todo
+      MYSQL_USER: todo
+      MYSQL_PASSWORD: todo
+
+volumes:
+  esdata1:
+    driver: local
+
