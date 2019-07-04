@@ -3,12 +3,15 @@
 namespace App\Entity\Todo;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as JMS;
 
 /**
  * Class Todo
  *
  * @ORM\Table(name="todo")
  * @ORM\Entity(repositoryClass="App\Repository\Todo\TodoRepository")
+ *
+ * @JMS\ExclusionPolicy("all")
  *
  * @ORM\HasLifecycleCallbacks()
  */
@@ -18,16 +21,22 @@ class Todo
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     *
+     * @JMS\Groups({"details", "list", "public"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     *
+     * @JMS\Groups({"details", "list", "public"})
      */
     private $todo;
 
     /**
      * @ORM\Column(type="boolean")
+     *
+     * @JMS\Groups({"details", "list", "public"})
      */
     private $isDone = false;
 

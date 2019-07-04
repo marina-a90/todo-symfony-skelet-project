@@ -17,7 +17,7 @@ class AppFixtures extends Fixture
 
         for ($i = 0; $i < 10; $i++) {
             $todo = new Todo();
-            $todo->setTodo('todo '.$i);
+            $todo->setTodo('Todo '.$i);
             $todo->setIsDone(mt_rand(0, 1));
             $manager->persist($todo);
         }
