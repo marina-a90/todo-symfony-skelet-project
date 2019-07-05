@@ -1,0 +1,33 @@
+security:
+    # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
+    providers:
+        fos_userbundle:
+            id: fos_user.user_provider.username_email
+    firewalls:
+        oauth:
+            pattern:    ^/api/v1/oauth/
+            security:   false
+        api:
+            pattern: ^/api                             # All URLs are protected
+            fos_oauth: true                            # OAuth2 protected resource
+            stateless: true                            # Do no set session cookies
+            anonymous: true
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        main:
+            pattern:      ^/
+            form_login:
+                login_path: fos_user_security_login
+                check_path: fos_user_security_check
+                provider: fos_userbundle
+                default_target_path: /admin/dashboard
+            logout:
+                path: fos_user_security_logout
+                target: /security/login
+            anonymous:    true
+    # Easy way to control access for large sections of your site
+    # Note: Only the *first* access control that matches will be used
+    access_control:
+    # - { path: ^/admin, roles: ROLE_ADMIN }
+    # - { path: ^/profile, roles: ROLE_USER }

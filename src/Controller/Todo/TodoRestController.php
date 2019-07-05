@@ -17,9 +17,11 @@ use Symfony\Component\Routing\Annotation\Route;
 use Nelmio\ApiDocBundle\Annotation\Model;
 use Swagger\Annotations as SWG;
 
-class TodoRestController
-    extends FOSRestController
+class TodoRestController extends FOSRestController
 {
+    private $todoManager;
+    private $todoRepository;
+
     public function __construct(EntityManagerInterface $entityManager)
     {
         $this->todoManager = $entityManager;

@@ -1,0 +1,16 @@
+App\Entity\Pages\BasicPage:
+    basic_page_1:
+        id: 'tnc'
+        title: 'Terms and conditions'
+        intro: 'Pellentesque facilisis enim at ante mattis, quis accumsan tortor imperdiet. Phasellus molestie enim eu tellus consectetur tincidunt.'
+        body: 'Lorem ipsum dolor sit amet consectetuer adipiscing'
+    basic_page_2:
+        id: 'privacy'
+        title: 'Privacy'
+        intro: 'Phasellus pretium auctor justo ut gravida. Praesent vitae fermentum enim. Curabitur euismod velit vel lacus ornare, vel blandit neque mollis.'
+        body: 'Lorem ipsum dolor sit amet consectetuer adipiscing'
+    basic_page_3:
+        id: 'about'
+        title: 'About us'
+        intro: 'Vestibulum facilisis a erat vel gravida. Cras non enim eu risus commodo iaculis.'
+        body: 'Lorem ipsum dolor sit amet consectetuer adipiscing'

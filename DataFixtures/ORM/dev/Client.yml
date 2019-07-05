@@ -1,0 +1,6 @@
+App\Entity\OAuth\Client:
+    client_1:
+        redirectUris: ['todo-api.com']
+        allowedGrantTypes: ['refresh_token', 'password']
+        randomId: 5w8zrdasdafr4tregd454cw0c0kswcgs0oks40s
+        secret: sdgggskokererg4232404gc4csdgfdsgf8s8ck5s

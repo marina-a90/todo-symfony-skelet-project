@@ -2,6 +2,7 @@
 
 namespace App\Entity\Todo;
 
+use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation as JMS;
 
@@ -17,6 +18,7 @@ use JMS\Serializer\Annotation as JMS;
  */
 class Todo
 {
+    use TimestampableEntity;
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()

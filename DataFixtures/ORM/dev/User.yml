@@ -1,0 +1,9 @@
+# User entity
+App\Entity\User\User:
+    user_1:
+        username: 'admin'
+        name: 'Admin'
+        email: 'admin@etondigital.com'
+        plainPassword: 'etondigital'
+        roles: ['ROLE_SUPER_ADMIN']
+        enabled: true
