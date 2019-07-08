@@ -1,4 +1,24 @@
 security:
+    encoders:
+        FOS\UserBundle\Model\UserInterface: sha512
+
+    role_hierarchy:
+        ROLE_SONATA_ADMIN: ROLE_USER
+        ROLE_ADMIN:
+#            - ROLE_USER
+#            - ROLE_SONATA_ADMIN
+#
+#            - ROLE_APP_ADMIN_USER_USER_LIST
+#            - ROLE_APP_ADMIN_USER_USER_EDIT
+#            - ROLE_APP_ADMIN_USER_USER_VIEW
+#            - ROLE_APP_ADMIN_USER_USER_EXPORT
+#
+#            - ROLE_APP_ADMIN_BASIC_PAGE_LIST
+#            - ROLE_APP_ADMIN_BASIC_PAGE_EDIT
+#            - ROLE_APP_ADMIN_BASIC_PAGE_VIEW
+#            - ROLE_APP_ADMIN_BASIC_PAGE_EXPORT
+        ROLE_SUPER_ADMIN: ROLE_ADMIN
+
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
         fos_userbundle:

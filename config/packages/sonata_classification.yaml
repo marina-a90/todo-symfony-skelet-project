@@ -1,0 +1,14 @@
+#sonata_classification:
+#    class:
+#        category: App\Entity\SonataClassificationCategory
+#        collection: App\Entity\SonataClassificationCollection
+#        context: App\Entity\SonataClassificationContext
+#        tag: App\Entity\SonataClassificationTag
+#        media: App\Entity\SonataMediaMedia
+sonata_classification:
+    class:
+        tag:          App\Application\Sonata\ClassificationBundle\Entity\Tag
+        category:     App\Application\Sonata\ClassificationBundle\Entity\Category
+        collection:   App\Application\Sonata\ClassificationBundle\Entity\Collection
+        media:        App\Application\Sonata\MediaBundle\Entity\Media
+        context:      App\Application\Sonata\ClassificationBundle\Entity\Context

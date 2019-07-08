@@ -1,0 +1,11 @@
+# Todo entity
+App\Entity\Todo\Todo:
+    todo_1:
+        todo: 'todo 1'
+        isDone: 0
+    todo_2:
+        todo: 'todo 2'
+        isDone: 1
+    todo_3:
+        todo: 'todo 3'
+        isDone: 0

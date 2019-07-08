@@ -24,6 +24,21 @@ class User extends BaseUser
     protected $id;
 
     /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $name;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $deleted = 0;
+
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
+    /**
      * @return mixed
      */
     public function getId()
@@ -31,8 +46,27 @@ class User extends BaseUser
         return $this->id;
     }
 
-    public function __construct()
+    public function getName()
     {
-        parent::__construct();
+        return $this->name;
+    }
+
+    public function setName(string $name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    public function getDeleted()
+    {
+        return $this->deleted;
+    }
+
+    public function setDeleted(bool $deleted)
+    {
+        $this->deleted = $deleted;
+
+        return $this;
     }
 }

@@ -3,7 +3,11 @@
 
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
+imports:
+    - { resource: 'parameters.yaml' }
 parameters:
+    locale: 'en'
+#    fos_oauth_server.server.class: App\Service\OAuth2
 
 services:
     # default configuration for services in *this* file
@@ -30,8 +34,9 @@ services:
     sensio_framework_extra.view.listener:
         alias: Sensio \ Bundle \ FrameworkExtraBundle \ EventListener \ TemplateListener
 
-    # makes classes in src/App/DataFixtures available to be used as services
-    # and have a tag that allows actions to type-hint services
-#    App\DataFixtures\:
-#        resource: '../../src/App/DataFixtures'
-#        tags: ['doctrine.fixture.orm']
+    fos_oauth_server.server:
+        class: "%fos_oauth_server.server.class%"
+        arguments: ["@fos_oauth_server.storage", "%fos_oauth_server.server.options%"]
+        public: true
+
+#    Sonata\MediaBundle\Provider\ImageProvider: '@sonata.media.provider.image'

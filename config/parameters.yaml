@@ -1,0 +1,12 @@
+parameters:
+    env(DATABASE_URL): mysql://todo:todo@todo_devdb:3306/todo
+    base_url: 'todo-api.com'
+#    elastica_host: todo_elasticsearch
+#    elastica_port: 9200
+#    user_url_confirmation: 'http://todo-api.com/confirm'
+#    user_url_resetting: 'http://todo-api.com/reset-password'
+#    mailer_transport: smtp
+#    mailer_host: maildev
+#    mailer_user: ~
+#    mailer_password: ~
+    server_id: local
