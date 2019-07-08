@@ -37,11 +37,6 @@ class UserAdmin extends AbstractAdmin
      */
     protected function configureFormFields(FormMapper $formMapper)
     {
-
-        $subject = $this->getSubject();
-        $countryCodes = $this->getConfigurationPool()
-            ->getContainer()->get('app.handler.resource_handler')->getCountryCodes();
-
         $formMapper
 
             ->with('Basic Details', ['class' => 'col-md-8', 'box_class' => 'box box-secondary'])
@@ -87,7 +82,6 @@ class UserAdmin extends AbstractAdmin
             ->end()
             ->end();
 
-
     }
 
     /**
@@ -95,23 +89,10 @@ class UserAdmin extends AbstractAdmin
      */
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
-        $countryCodes = $this->getConfigurationPool()
-            ->getContainer()->get('app.handler.resource_handler')->getCountryCodes();
-
         $datagridMapper
             ->add('email')
             ->add('username')
             ->add('name', null, ['label' => 'Name'])
-            ->add(
-                'profile.country',
-                'doctrine_orm_choice',
-                array('label' => "Country"),
-                ChoiceType::class,
-                array(
-                    'choices' => array(
-                        $countryCodes               )
-                )
-            )
         ;
     }
 
@@ -122,30 +103,13 @@ class UserAdmin extends AbstractAdmin
     {
         $listMapper
             ->add('id')
-
-
             ->add('email')
-            //->add('username')
-            ->add('name', null, ['label' => 'Name', 'editable' => true, 'template' => 'admin/listFields/username.html.twig'])
+            ->add('name', null, ['label' => 'Name', 'editable' => true])
             ->add('username')
-
-
-            ->add('profile.country', null, [
-                'template' => 'admin/listFields/fullCountryName.html.twig',
-                'label' => 'Country'
-            ])
-
-            ->add('roles', null, [
-                'template' => 'admin/listFields/roles.html.twig',
-                'label' => 'Roles'
-            ])
-
-            //->add('deleted')
+            ->add('roles', null, ['label' => 'Roles'])
+            ->add('deleted')
             ->add('enabled', null, ['label' => "Enabled"])
-
             ->add('createdAt', null, ['label' => 'Date of registration'])
-
-
             ->add('_action', 'actions', [
                 'actions' => [
                     'edit' => [],
@@ -154,69 +118,6 @@ class UserAdmin extends AbstractAdmin
             ])
         ;
     }
-
-    /**
-     * { @inheritdoc }
-     */
-    protected function configureShowFields(ShowMapper $showMapper)
-    {
-
-        $subject = $this->getSubject();
-
-        if (in_array("ROLE_USER", $subject->getRoles()) && count($subject->getRoles()) === 1) {
-            $showMapper
-                ->with('User SnGroupMember Info ', ['class' => 'col-md-7', 'box_class' => 'box box-secondary']);
-        } else {
-            $showMapper
-                ->with('User Admin Info ', ['class' => 'col-md-7', 'box_class' => 'box box-secondary']);
-        }
-
-        $showMapper
-                ->add('id')
-                ->add('email')
-                ->add('username')
-                ->add('name')
-                ->add('profile.country', null, [
-                    'label' => 'Country',
-                    'template' => 'admin/showFields/fullCountryName.html.twig'
-                ])
-            ->end()
-
-
-        ->with('User Info ', ['class' => 'col-md-5', 'box_class' => 'box box-secondary'])
-
-        ->add('createdAt')
-        ->add('lastLogin')
-        ->add('enabled')
-        ->end()
-        ;
-    }
-
-    /**
-     * {@inheritdoc }
-     */
-    protected function configureRoutes(RouteCollection $collection)
-    {
-        $collection->remove('create');
-        //$collection->remove('edit');
-        $collection->remove('delete');
-    }
-
-//    /**
-//     * { @inheritdoc }
-//     */
-//    public function prePersist($object) {
-//        parent::prePersist($object);
-//        $this->updateUser($object);
-//    }
-//
-//    /**
-//     * { @inheritdoc }
-//     */
-//    public function preUpdate($object) {
-//        parent::preUpdate($object);
-//        $this->updateUser($object);
-//    }
 
     /**
      * { @inheritdoc }
@@ -252,8 +153,8 @@ class UserAdmin extends AbstractAdmin
      *
      * @param User $u
      */
-    public function updateUser(User $u) {
-        $um = $this->getConfigurationPool()->getContainer()->get('fos_user.user_manager');
-        $um->updateUser($u, false);
-    }
+//    public function updateUser(User $u) {
+//        $um = $this->getConfigurationPool()->getContainer()->get('fos_user.user_manager');
+//        $um->updateUser($u, false);
+//    }
 }

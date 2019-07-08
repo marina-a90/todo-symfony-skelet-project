@@ -40,3 +40,16 @@ services:
         public: true
 
 #    Sonata\MediaBundle\Provider\ImageProvider: '@sonata.media.provider.image'
+
+# Admin panel, Sonata
+    admin.todo:
+        class: App\Admin\TodoAdmin
+        arguments: [~, App\Entity\Todo\Todo, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: Todo }
+
+    admin.user:
+        class: App\Admin\UserAdmin
+        arguments: [~, App\Entity\User\User, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: User }
