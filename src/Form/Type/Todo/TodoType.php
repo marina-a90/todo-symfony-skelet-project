@@ -37,8 +37,7 @@ class TodoType extends AbstractType
 //                    'Yes' => 1,
 //                    'No' => 0
 //                ],
-//                'empty_value' => false,
-//                'choices_as_values' => true
+//                'empty_value' => false
 //            ]
             )
         ;

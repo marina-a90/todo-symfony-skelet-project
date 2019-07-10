@@ -7,13 +7,16 @@ imports:
     - { resource: 'parameters.yaml' }
 parameters:
     locale: 'en'
-#    fos_oauth_server.server.class: App\Service\OAuth2
+    fos_oauth_server.server.class: App\Service\OAuth2
 
 services:
     # default configuration for services in *this* file
     _defaults:
         autowire: true      # Automatically injects dependencies in your services.
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+        public: false       # Allows optimizing the container by removing unused services; this also means
+                            # fetching services directly from the container via $container->get() won't work.
+                            # The best practice is to be explicit about your dependencies anyway.
 
     # makes classes in src/ available to be used as services
     # this creates a service per class whose id is the fully-qualified class name
@@ -46,10 +49,40 @@ services:
         class: App\Admin\TodoAdmin
         arguments: [~, App\Entity\Todo\Todo, ~]
         tags:
-            - { name: sonata.admin, manager_type: orm, label: Todo }
+            - { name: sonata.admin, manager_type: orm, label: Todo, group: 'Todo' }
 
     admin.user:
         class: App\Admin\UserAdmin
         arguments: [~, App\Entity\User\User, ~]
         tags:
-            - { name: sonata.admin, manager_type: orm, label: User }
+            - { name: sonata.admin, manager_type: orm, label: User, group: 'User' }
+
+    admin.basic_page:
+        class: App\Admin\BasicPageAdmin
+        arguments: [~, App\Entity\Pages\BasicPage, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: Basic Page, group: 'pages' }
+
+    admin.contact_page:
+        class: App\Admin\ContactPageAdmin
+        arguments: [~, App\Entity\Pages\ContactPage, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: Contact Page, group: 'pages' }
+
+# Forms
+    app.user.user_register.type.form:
+        class: App\Form\Type\User\UserRegisterType
+        arguments: ["@doctrine"]
+        tags:
+            - { name: form.type }
+                
+# Managers
+    app.todo.todo.manager:
+        class: App\Service\Manager\Todo\TodoManager
+        arguments: ["@doctrine.orm.entity_manager", 'App\Entity\Todo\Todo']
+        public: true
+
+    app.user.user.manager:
+        class: App\Service\Manager\User\UserManager
+        arguments: ["@doctrine.orm.entity_manager", 'App\Entity\User\User', "@fos_user.user_manager"]
+        public: true

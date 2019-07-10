@@ -12,7 +12,7 @@ use JMS\Serializer\Annotation as JMS;
  * @ORM\Table(name="todo")
  * @ORM\Entity(repositoryClass="App\Repository\Todo\TodoRepository")
  *
- * @JMS\ExclusionPolicy("all")
+ * @JMS\ExclusionPolicy("none")
  *
  * @ORM\HasLifecycleCallbacks()
  */
@@ -24,21 +24,21 @@ class Todo
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      *
-     * @JMS\Groups({"details", "list", "public"})
+//     * @JMS\Groups({"details", "list"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      *
-     * @JMS\Groups({"details", "list", "public"})
+//     * @JMS\Groups({"details", "list"})
      */
     private $todo;
 
     /**
      * @ORM\Column(type="boolean")
      *
-     * @JMS\Groups({"details", "list", "public"})
+//     * @JMS\Groups({"details", "list"})
      */
     private $isDone = false;
 

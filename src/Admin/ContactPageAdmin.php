@@ -2,11 +2,11 @@
 
 namespace App\Admin;
 
+use App\Entity\Pages\ContactPage;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Show\ShowMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
-use Sonata\AdminBundle\Route\RouteCollection;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 
 /**
@@ -20,6 +20,7 @@ class ContactPageAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
+            ->add('id')
             ->add('email', EmailType::class)
             ->add('location')
             ->add('phone')
@@ -65,12 +66,8 @@ class ContactPageAdmin extends AbstractAdmin
         ;
     }
 
-    /**
-     * {@inheritdoc }
-     */
-    protected function configureRoutes(RouteCollection $collection)
+    public function toString($object)
     {
-        $collection->remove('create');
-        $collection->remove('delete');
+        return $object instanceof ContactPage ? $object->getId() : 'ContactPage';
     }
 }

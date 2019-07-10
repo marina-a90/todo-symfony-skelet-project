@@ -2,31 +2,28 @@
 
 namespace App\Controller\Todo;
 
+use App\Controller\BaseRestController;
 use App\Entity\Todo\Todo;
+use App\Entity\User\User;
 use App\Form\Type\Todo\TodoType;
 use Doctrine\ORM\EntityManagerInterface;
-use FOS\RestBundle\Context\Context;
-use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\View\View;
-//use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Nelmio\ApiDocBundle\Tests\Functional\Controller\ApiController;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Nelmio\ApiDocBundle\Annotation\Model;
 use Swagger\Annotations as SWG;
 
-class TodoRestController extends FOSRestController
+class TodoRestController extends BaseRestController
 {
-    private $todoManager;
-    private $todoRepository;
-
-    public function __construct(EntityManagerInterface $entityManager)
-    {
-        $this->todoManager = $entityManager;
-        $this->todoRepository = $this->todoManager->getRepository(Todo::class);
-    }
+//    private $todoManager;
+//    private $todoRepository;
+//
+//    public function __construct(EntityManagerInterface $entityManager)
+//    {
+//        $this->todoManager = $entityManager;
+//        $this->todoRepository = $this->todoManager->getRepository(Todo::class);
+//    }
 
     /**
      * Get list of Todos.
@@ -47,29 +44,36 @@ class TodoRestController extends FOSRestController
      *     )
      *  )
      *
-//     * @return view
-     * @return Response
+     * @return Response|View
      */
     public function getTodosAction()
     {
-        $todos = $this->todoRepository->findAll();
-
-        if (!$todos) {
-            return new Response('No todos.');
+        /** @var User $user */
+        $user = $this->getUser();
+        if (!$user) {
+            return $this->forbidden(['message' =>'You do not have permission for the action.']);
         }
 
-        return new Response($this->json($todos));
+        /** @var Todo $todos */
+//        $todos = $this->todoRepository->findAll();
+        $todos = $this->getEntityManager()->findAll();
+
+        if (!$todos) {
+            return $this->notFound(['message' =>'No todos.']);
+        }
+
+        return $this->ok($todos, ['list']);
     }
 
     /**
-     * Get list of incompleted Todos.
+     * Get list of incomplete Todos.
      *
      * @Route("/todos", methods={"GET"})
      *
      * @SWG\Get(
      *     tags={"Todo"},
-     *     summary="Get list of incompleted Todos",
-     *     description="Get list of incompleted Todos",
+     *     summary="Get list of incomplete Todos",
+     *     description="Get list of incomplete Todos",
      *     produces={"application/json"},
      *     @SWG\Tag(name="Todo"),
      *     @SWG\Response(
@@ -80,17 +84,27 @@ class TodoRestController extends FOSRestController
      *     )
      *  )
      *
-     * @return Response
+     * @return View
+//     * @return Response
      */
-    public function getIncompeltedTodosAction()
+    public function getIncompelteTodosAction()
     {
-        $todos = $this->todoRepository->findBy(['isDone' => 0]);
+        /** @var User $user */
+        $user = $this->getUser();
+        if (!$user) {
+            return $this->forbidden(['message' =>'You do not have permission for the action.']);
+        }
+
+        /** @var Todo $todos */
+//        $todos = $this->todoRepository->findBy(['isDone' => 0]);
+        $todos = $this->getEntityManager()->findIncompleteTodos();
 
         if (!$todos) {
-            return new Response('No incomplete todos.');
+            return $this->notFound(['message' =>'No incomplete todos.']);
         }
-;
-        return new Response($this->json($todos));
+
+        return $this->ok($todos, ['list']);
+//        return new Response($this->json($todos));
     }
 
     /**
@@ -112,19 +126,25 @@ class TodoRestController extends FOSRestController
      *     )
      *  )
      *
-//     * @return View
-     * @return Response
+     * @return View
+//     * @return Response
      */
     public function getSingleTodoAction($id)
     {
-        $todo = $this->todoRepository->findOneBy(['id' => $id]);
-
-        if (!$todo) {
-            return new Response('Todo not found.');
+        /** @var User $user */
+        $user = $this->getUser();
+        if (!$user) {
+            return $this->forbidden(['message' =>'You do not have permission for the action.']);
         }
 
-        return new Response($this->json($todo));
-//      return $this->view($todo, Response::HTTP_OK);
+        /** @var Todo $todo */
+        $todo = $this->getEntityManager()->find($id);
+//        $todo = $this->todoRepository->findOneBy(['id' => $id]);
+        if (!$todo) {
+            return $this->notFound(['message' =>'Todo not found.']);
+        }
+
+        return $this->ok($todo, ['list']);
     }
 
 
@@ -156,10 +176,17 @@ class TodoRestController extends FOSRestController
      *  )
      * @param Request $request
      *
-     * @return Response
+     * @return View
      */
     public function postTodoAction(Request $request)
     {
+        /** @var User $user */
+        $user = $this->getUser();
+        if (!$user) {
+            return $this->forbidden(['message' =>'You do not have permission for the action.']);
+        }
+
+        /** @var Todo $todo */
         $todo = new Todo();
 
         $form = $this->createForm(TodoType::class, $todo, [
@@ -170,15 +197,26 @@ class TodoRestController extends FOSRestController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->todoManager;
-            $em->persist($todo);
-            $em->flush();
+//            $em = $this->todoManager;
+//            $em->persist($todo);
+//            $em->flush();
+//
+//            return $this->ok($todo, ['list']);
 
-            return new Response($this->json($todo));
-//            return $this->handleView($this->view(['status' => 'ok'], Response::HTTP_CREATED));
+            $em = $this->getEntityManager();
+            $em->save($todo);
+
+            return $this->ok($todo, ['list']);
+
+//            $data = $form->getData();
+//            $em = $this->todoManager;
+//            $em->persist($data);
+//            $em->flush();
+
+//            return $this->ok($data, ['list']);
         }
 
-        return $this->handleView($this->view($form->getErrors()));
+        return $this->bad($form);
     }
 
     /**
@@ -187,8 +225,8 @@ class TodoRestController extends FOSRestController
      *
      * @SWG\Patch(
      *     tags={"Todo"},
-     *     summary="Edit new todo",
-     *     description="Edit new todo.",
+     *     summary="Edit todo",
+     *     description="Edit todo.",
      *     produces={"application/json"},
      *     @SWG\Parameter(
      *         name="body",
@@ -211,32 +249,50 @@ class TodoRestController extends FOSRestController
      * @param Request $request
      * @param integer $id
      *
-     * @return Response
+     * @return Response|View
      */
     public function patchTodoAction(Request $request, $id)
     {
-        $todo = $this->todoRepository->findOneBy(['id' => $id]);
+        /** @var User $user */
+        $user = $this->getUser();
+        if (!$user) {
+            return $this->forbidden(['message' =>'You do not have permission for the action.']);
+        }
 
+        /** @var Todo $todo */
+        $todo = $this->todoRepository->findOneBy(['id' => $id]);
         if (!$todo) {
-            return new Response('Todo not found.');
+            return $this->notFound(['message' =>'Todo not found.']);
         }
 
         $form = $this->createForm(TodoType::class, $todo, [
-            'method' => Request::METHOD_POST,
+            'method' => Request::METHOD_PATCH,
             'csrf_protection' => false,
         ]);
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->todoManager;
-            $em->persist($todo);
-            $em->flush();
+//            $em = $this->todoManager;
+//            $em->persist($todo);
+//            $em->flush();
+//
+//            return $this->ok($todo, ['list']);
 
-            return new Response($this->json($todo));
+            $em = $this->getEntityManager();
+            $em->save($todo);
+
+            return $this->ok($todo, ['list']);
+
+//            $data = $form->getData();
+//            $em = $this->todoManager;
+//            $em->persist($data);
+//            $em->flush();
+//
+//            return $this->ok($data, ['list']);
         }
 
-        return $this->handleView($this->view($form->getErrors()));
+        return $this->bad($form);
     }
 
     /**
@@ -262,19 +318,29 @@ class TodoRestController extends FOSRestController
      */
     public function putToggleIsDoneTodoAction(Request $request, $id)
     {
-        $todo = $this->todoRepository->find($id);
+        /** @var User $user */
+        $user = $this->getUser();
+        if (!$user) {
+            return $this->forbidden(['message' =>'You do not have permission for the action.']);
+        }
 
+        /** @var Todo $todo */
+        $todo = $this->todoRepository->find($id);
         if (!$todo) {
-            return new Response('Todo not found.');
+            return $this->notFound(['message' =>'Todo not found.']);
         }
 
         $todo->setIsDone( !$todo->getIsDone() );
 
-        $em = $this->todoManager;
-        $em->persist($todo);
-        $em->flush();
+        $em = $this->getEntityManager();
+        $em->save($todo);
 
-        return new Response($this->json($todo));
+
+//        $em = $this->todoManager;
+//        $em->persist($todo);
+//        $em->flush();
+
+        return $this->ok($todo, ['list']);
     }
 
 
@@ -307,20 +373,40 @@ class TodoRestController extends FOSRestController
      * @param Request $request
      * @param integer $id
      *
-     * @return Response
+     * @return Response|View
      */
     public function deleteTodoAction(Request $request, $id)
     {
-        $todo = $this->todoRepository->find($id);
-
+        /** @var Todo $todo */
+//        $todo = $this->todoRepository->find($id);
+        $todo = $this->getEntityManager()->find($id);
         if (!$todo) {
-            return new Response('No incomplete todos.');
+            return $this->notFound(['message' =>'Todo not found.']);
         }
 
-        $this->todoManager->remove($todo);
-        $this->todoManager->flush();
+        $em = $this->getEntityManager();
+        $em->delete($todo);
 
-        return new Response('Successfully deleted');
+//        $this->todoManager->remove($todo);
+//        $this->todoManager->flush();
+
+        return new Response('Successfully deleted the todo: ' . $todo->getTodo());
+    }
+
+    /**
+     * Get entity manager
+     */
+    protected function getEntityManager()
+    {
+        return $this->get('app.todo.todo.manager');
+    }
+
+    /**
+     * { @inheritdoc }
+     */
+    protected function getFormClass()
+    {
+        return null;
     }
 
 }

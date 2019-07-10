@@ -1,10 +1,62 @@
-sonata_admin:
-    title: 'Sonata Admin'
-    dashboard:
-        blocks:
-            - { type: sonata.admin.block.admin_list, position: left }
-
 sonata_block:
     blocks:
         sonata.admin.block.admin_list:
             contexts: [admin]
+        sonata.admin.block.search_result:
+            contexts: [admin]
+        sonata.block.service.blocks: ~
+
+sonata_admin:
+    title: 'Todo'
+#    title_logo: images/*image*
+    security:
+        #        handler: sonata.admin.security.handler.role
+
+        role_admin: ROLE_ADMIN
+        role_super_admin: ROLE_SUPER_ADMIN
+
+        information:
+            EDIT: EDIT
+            LIST: LIST
+            CREATE: CREATE
+            VIEW: VIEW
+            DELETE: DELETE
+            EXPORT: EXPORT
+            OPERATOR: OPERATOR
+            MASTER: MASTER
+    dashboard:
+        blocks:
+        - { type: sonata.admin.block.admin_list, position: left }
+        groups:
+            user:
+                label: Users
+                icon: <i class="fa fa-user"></i>
+                items:
+                    -   route:        admin_app_user_user_list
+                        label:        User list
+#                roles: [ ROLE_ADMIN ]
+
+            basic:
+                label: 'Pages'
+                icon: <i class="fa fa-user"></i>
+                items:
+                    -   route:        admin_app_pages_basicpage_list
+                        label:        Basic Page
+                    -   route:        admin_app_pages_contactpage_list
+                        label:        Contact Page
+#                roles: [ ROLE_ADMIN ]
+
+            todo:
+                label: 'Todos'
+                icon: <i class="fa fa-user"></i>
+                items:
+                    -   route:        admin_app_todo_todo_list
+                        label:        Todo list
+#                roles: [ ROLE_ADMIN ]
+
+sonata_core:
+    flashmessage:
+        error:
+            #css_class: error_msg # optionally, a CSS class can be defined
+            types:
+                - { type: menu_type_check, domain: App }

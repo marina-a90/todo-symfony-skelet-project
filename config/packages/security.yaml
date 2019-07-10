@@ -5,9 +5,9 @@ security:
     role_hierarchy:
         ROLE_SONATA_ADMIN: ROLE_USER
         ROLE_ADMIN:
-#            - ROLE_USER
-#            - ROLE_SONATA_ADMIN
-#
+            - ROLE_USER
+            - ROLE_SONATA_ADMIN
+
 #            - ROLE_APP_ADMIN_USER_USER_LIST
 #            - ROLE_APP_ADMIN_USER_USER_EDIT
 #            - ROLE_APP_ADMIN_USER_USER_VIEW
@@ -22,11 +22,12 @@ security:
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
         fos_userbundle:
-            id: fos_user.user_provider.username_email
+            id: fos_user.user_provider.username_email  # Logging by Username or Email
     firewalls:
         oauth:
             pattern:    ^/api/v1/oauth/
             security:   false
+
         api:
             pattern: ^/api                             # All URLs are protected
             fos_oauth: true                            # OAuth2 protected resource
@@ -49,5 +50,6 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-    # - { path: ^/admin, roles: ROLE_ADMIN }
-    # - { path: ^/profile, roles: ROLE_USER }
+#     - { path: ^/admin, roles: ROLE_ADMIN }
+#     - { path: ^/profile, roles: ROLE_USER }
+#     - { path: ^/api, roles: [ IS_AUTHENTICATED_FULLY ] }

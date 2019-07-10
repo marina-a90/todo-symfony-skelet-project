@@ -8,7 +8,25 @@ todo.todo.rest.controller:
   type:     annotation
   prefix:   /api/v1
 
+user.user.rest.controller:
+  resource: "Controller/User/UserRestController.php"
+  type:     annotation
+  prefix:   /api/v1
+
+user.oauth.rest.controller:
+  resource: "Controller/User/OauthRestController.php"
+  type:     annotation
+  prefix:   /api/v1
+
+# Swagger
 app.swagger_ui:
   path: /api/doc
   methods: GET
   defaults: { _controller: nelmio_api_doc.controller.swagger_ui }
+
+# FOS
+fos_oauth_server_token:
+  resource: "@FOSOAuthServerBundle/Resources/config/routing/token.xml"
+
+fos_oauth_server_authorize:
+  resource: "@FOSOAuthServerBundle/Resources/config/routing/authorize.xml"

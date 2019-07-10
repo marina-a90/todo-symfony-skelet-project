@@ -20,3 +20,5 @@ framework:
         engines: ['twig']
 
     translator: { fallbacks: ['%locale%'] }
+
+    validation: { enabled: true }
