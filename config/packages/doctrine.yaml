@@ -83,7 +83,7 @@ doctrine:
 #                    ApplicationSonataClassificationBundle: ~
                     SonataClassificationBundle: ~
 #                    ApplicationSonataMediaBundle: ~
-#                    SonataMediaBundle: ~
+                    SonataMediaBundle: ~
                     App:
                         is_bundle: false
                         type: annotation

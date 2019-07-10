@@ -129,6 +129,9 @@
     "gedmo/doctrine-extensions": {
         "version": "v2.4.37"
     },
+    "guzzlehttp/psr7": {
+        "version": "1.6.1"
+    },
     "hautelook/alice-bundle": {
         "version": "2.1",
         "recipe": {
@@ -182,6 +185,9 @@
     "hoa/zformat": {
         "version": "1.17.01.10"
     },
+    "imagine/imagine": {
+        "version": "v0.7.1"
+    },
     "jdorn/sql-formatter": {
         "version": "v1.2.17"
     },
@@ -205,11 +211,17 @@
             "config/packages/prod/jms_serializer.yaml"
         ]
     },
+    "knplabs/gaufrette": {
+        "version": "v0.8.3"
+    },
     "knplabs/knp-menu": {
         "version": "2.3.0"
     },
     "knplabs/knp-menu-bundle": {
         "version": "2.2.2"
+    },
+    "kriswallsmith/buzz": {
+        "version": "v0.16.1"
     },
     "myclabs/deep-copy": {
         "version": "1.9.1"
@@ -276,8 +288,14 @@
     "psr/container": {
         "version": "1.0.0"
     },
+    "psr/http-message": {
+        "version": "1.0.1"
+    },
     "psr/log": {
         "version": "1.1.0"
+    },
+    "ralouphie/getallheaders": {
+        "version": "3.0.3"
     },
     "sebastian/comparator": {
         "version": "3.0.2"
@@ -377,6 +395,20 @@
     },
     "sonata-project/exporter": {
         "version": "2.0.1"
+    },
+    "sonata-project/media-bundle": {
+        "version": "3.13",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "3.13",
+            "ref": "e25412e53b20827db07abb6f2aa0b8e4d26c284c"
+        },
+        "files": [
+            "config/packages/sonata_media.yaml",
+            "config/routes/sonata_media.yaml",
+            "public/upload/media/.gitignore"
+        ]
     },
     "stof/doctrine-extensions-bundle": {
         "version": "1.2",

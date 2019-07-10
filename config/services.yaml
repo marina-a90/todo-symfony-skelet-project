@@ -23,7 +23,7 @@ services:
     App\:
         resource: '../src/*'
 #        exclude: '../src/{DependencyInjection,Entity,Migrations,Tests,Kernel.php}'
-        exclude: '../src/{DependencyInjection,Entity,Migrations,Tests,Kernel.php,DataFixtures}'
+        exclude: '../src/{DependencyInjection,Entity,Migrations,Tests,Kernel.php,DataFixtures,Application}'
 
     # controllers are imported separately to make sure services can be injected
     # as action arguments even if you don't extend any base controller class
@@ -42,7 +42,8 @@ services:
         arguments: ["@fos_oauth_server.storage", "%fos_oauth_server.server.options%"]
         public: true
 
-#    Sonata\MediaBundle\Provider\ImageProvider: '@sonata.media.provider.image'
+# Sonata Media
+    Sonata\MediaBundle\Provider\ImageProvider: '@sonata.media.provider.image'
 
 # Admin panel, Sonata
     admin.todo:
