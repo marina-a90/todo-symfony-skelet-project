@@ -6,7 +6,6 @@ use App\Controller\BaseRestController;
 use App\Entity\Todo\Todo;
 use App\Entity\User\User;
 use App\Form\Type\Todo\TodoType;
-use Doctrine\ORM\EntityManagerInterface;
 use FOS\RestBundle\View\View;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,15 +15,6 @@ use Swagger\Annotations as SWG;
 
 class TodoRestController extends BaseRestController
 {
-//    private $todoManager;
-//    private $todoRepository;
-//
-//    public function __construct(EntityManagerInterface $entityManager)
-//    {
-//        $this->todoManager = $entityManager;
-//        $this->todoRepository = $this->todoManager->getRepository(Todo::class);
-//    }
-
     /**
      * Get list of Todos.
      *
@@ -44,7 +34,7 @@ class TodoRestController extends BaseRestController
      *     )
      *  )
      *
-     * @return Response|View
+     * @return View
      */
     public function getTodosAction()
     {
@@ -55,7 +45,6 @@ class TodoRestController extends BaseRestController
         }
 
         /** @var Todo $todos */
-//        $todos = $this->todoRepository->findAll();
         $todos = $this->getEntityManager()->findAll();
 
         if (!$todos) {
@@ -85,7 +74,6 @@ class TodoRestController extends BaseRestController
      *  )
      *
      * @return View
-//     * @return Response
      */
     public function getIncompelteTodosAction()
     {
@@ -96,7 +84,6 @@ class TodoRestController extends BaseRestController
         }
 
         /** @var Todo $todos */
-//        $todos = $this->todoRepository->findBy(['isDone' => 0]);
         $todos = $this->getEntityManager()->findIncompleteTodos();
 
         if (!$todos) {
@@ -104,7 +91,6 @@ class TodoRestController extends BaseRestController
         }
 
         return $this->ok($todos, ['list']);
-//        return new Response($this->json($todos));
     }
 
     /**
@@ -127,7 +113,6 @@ class TodoRestController extends BaseRestController
      *  )
      *
      * @return View
-//     * @return Response
      */
     public function getSingleTodoAction($id)
     {
@@ -139,7 +124,6 @@ class TodoRestController extends BaseRestController
 
         /** @var Todo $todo */
         $todo = $this->getEntityManager()->find($id);
-//        $todo = $this->todoRepository->findOneBy(['id' => $id]);
         if (!$todo) {
             return $this->notFound(['message' =>'Todo not found.']);
         }
@@ -197,23 +181,10 @@ class TodoRestController extends BaseRestController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-//            $em = $this->todoManager;
-//            $em->persist($todo);
-//            $em->flush();
-//
-//            return $this->ok($todo, ['list']);
-
             $em = $this->getEntityManager();
             $em->save($todo);
 
             return $this->ok($todo, ['list']);
-
-//            $data = $form->getData();
-//            $em = $this->todoManager;
-//            $em->persist($data);
-//            $em->flush();
-
-//            return $this->ok($data, ['list']);
         }
 
         return $this->bad($form);
@@ -249,7 +220,7 @@ class TodoRestController extends BaseRestController
      * @param Request $request
      * @param integer $id
      *
-     * @return Response|View
+     * @return View
      */
     public function patchTodoAction(Request $request, $id)
     {
@@ -273,23 +244,10 @@ class TodoRestController extends BaseRestController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-//            $em = $this->todoManager;
-//            $em->persist($todo);
-//            $em->flush();
-//
-//            return $this->ok($todo, ['list']);
-
             $em = $this->getEntityManager();
             $em->save($todo);
 
             return $this->ok($todo, ['list']);
-
-//            $data = $form->getData();
-//            $em = $this->todoManager;
-//            $em->persist($data);
-//            $em->flush();
-//
-//            return $this->ok($data, ['list']);
         }
 
         return $this->bad($form);
@@ -335,11 +293,6 @@ class TodoRestController extends BaseRestController
         $em = $this->getEntityManager();
         $em->save($todo);
 
-
-//        $em = $this->todoManager;
-//        $em->persist($todo);
-//        $em->flush();
-
         return $this->ok($todo, ['list']);
     }
 
@@ -378,7 +331,6 @@ class TodoRestController extends BaseRestController
     public function deleteTodoAction(Request $request, $id)
     {
         /** @var Todo $todo */
-//        $todo = $this->todoRepository->find($id);
         $todo = $this->getEntityManager()->find($id);
         if (!$todo) {
             return $this->notFound(['message' =>'Todo not found.']);
@@ -386,9 +338,6 @@ class TodoRestController extends BaseRestController
 
         $em = $this->getEntityManager();
         $em->delete($todo);
-
-//        $this->todoManager->remove($todo);
-//        $this->todoManager->flush();
 
         return new Response('Successfully deleted the todo: ' . $todo->getTodo());
     }

@@ -5,7 +5,6 @@ namespace App\Controller\User;
 use App\Controller\BaseRestController;
 use App\Entity\User\User;
 use App\Form\Type\User\UserRegisterType;
-use Doctrine\ORM\EntityManagerInterface;
 use FOS\UserBundle\Event\FormEvent;
 use FOS\UserBundle\Event\GetResponseUserEvent;
 use FOS\UserBundle\FOSUserEvents;
@@ -17,15 +16,6 @@ use Swagger\Annotations as SWG;
 
 class UserRestController extends BaseRestController
 {
-//    private $userManager;
-//    private $userRepository;
-//
-//    public function __construct(EntityManagerInterface $entityManager)
-//    {
-//        $this->userManager = $entityManager;
-//        $this->userRepository = $this->userManager->getRepository(User::class);
-//    }
-
     /**
      * Get list of members
      *
@@ -60,7 +50,6 @@ class UserRestController extends BaseRestController
 
         /** @var User $users */
         $users = $this->getEntityManager()->findAll();
-//        $users = $this->userRepository->findAll();
 
         if (!$users) {
             return $this->notFound(['message' =>'No users.']);
@@ -142,18 +131,17 @@ class UserRestController extends BaseRestController
     {
         /** @var User $user */
         $user = $this->getUser();
-
         if ($user) {
             return $this->forbidden(['message' =>'You cannot register while you are logged in. To make a new account, please log out.']);
         }
 
         $dispatcher = $this->get('event_dispatcher');
-//        $userRepository = $this->userRepository;
+
         $em = $this->getEntityManager();
 
         $userEmail = $request->get('email', null);
+
         /** @var User $user */
-//        $user = $userRepository->findOneBy(['email' => $userEmail]);
         $user = $em->findOneBy(['email' => $userEmail]);
 
         if (!$user) {
@@ -162,6 +150,7 @@ class UserRestController extends BaseRestController
 
         $event = new GetResponseUserEvent($user, $request);
         $dispatcher->dispatch(FOSUserEvents::REGISTRATION_INITIALIZE, $event);
+
         $form = $this->createForm(UserRegisterType::class, $user, [
             'method' => Request::METHOD_POST,
             'csrf_protection' => false,
