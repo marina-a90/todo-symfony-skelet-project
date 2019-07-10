@@ -1,0 +1,4 @@
+form:
+    todo: "Please give a name to your todo"
+    not_found_todo: "Todo not found"
+    not_found_todos: "Todos not found"

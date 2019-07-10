@@ -1,0 +1,53 @@
+form:
+    name: Name
+    password: Password
+    current_password: Current password
+    new_password: New password
+    password_confirmation: Password confirmation
+security:
+    login:
+        email: Email
+        password: Password
+        remember_me: Remember me
+        sign_in: Sign in
+    user:
+        no_users: 'This user is not found.'
+        not_logged_in: 'Please log in.'
+        registration_ban: 'You cannot register while you are logged in. To make a new account, please log out first.'
+        username_empty: 'Username is empty.'
+        is_banned: 'This user is banned'
+        is_not_enabled: "You still haven't activated your account. Please go to your email inbox and click the activation link."
+        registration_complete: 'Your already complete registration. Please wait for the admin to approve your data.'
+        is_blocked: "Sorry, we don't recognize that email/username or password."
+        not_have_permission: 'You do not have permission for the action.'
+        not_set_phone_number: 'Please set phone number.'
+application:
+    token:
+        invalid_credentials: Invalid client credentials.
+        invalid_client_id: Invalid client id.
+    user:
+        username:
+            blank_username: 'Username is required.'
+            this_is_you: 'This is you.'
+            already_taken: 'Username is already taken.'
+            available: 'Username is available.'
+
+registration:
+    token:
+        not_valid: 'Token is not valid.'
+resetting:
+    #    email:
+    #        subject: Reset Password
+    #        body:
+    #            greeting: Hello!
+    #            message: To reset your password - click on the link below.
+    #            closing: Regards, Impulse Team.
+    #            reset_button: RESET PASSWORD
+    #            reseting: '%resettingUrl%'
+    password:
+        already_requested: 'This user has already requested password reset.'
+        account_disabled: 'Account is blocked.'
+        token_expired: 'Token expired.'
+message:
+    resetting:
+        request: 'Thank you, please check your mail for further instructions.'

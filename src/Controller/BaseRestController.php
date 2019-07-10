@@ -236,14 +236,12 @@ abstract class BaseRestController extends FOSRestController
     protected function notFound($data = null)
     {
         if (is_array($data) && $data['message']) {
-            $formattedData = $data;
+            $data;
         } else {
-            $formattedData = [
-                'message' => $data,
-            ];
+            $data;
         }
 
-        return $this->view($formattedData, Response::HTTP_NOT_FOUND);
+        return $this->view($data, Response::HTTP_NOT_FOUND);
     }
 
     /**

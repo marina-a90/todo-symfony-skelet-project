@@ -1,0 +1,88 @@
+form:
+    user:
+        terms:
+            not_null: 'You cannot register without accepting the terms.'
+        email:
+            validation:
+                not_null: "Please enter your email."
+                unique: "This email is already taken. Do you already have an account?"
+        plainPassword:
+            validation:
+                not_null: "Please enter your password."
+                min: "Short passwords are easy to guess. Try one with at least {{ limit }} characters."
+                max: "Try with shorter password. Password can contain max {{ limit }} characters."
+        username:
+            validation:
+                not_null: "Please enter your username."
+                min: "Please make sure that your username is more than {{ limit }} characters."
+                max: "Please make sure that your username is less than {{ limit }} characters."
+                pattern: "Please add a valid password."
+                unique: "This username is already taken. Please choose another one."
+    profile:
+        name:
+            validation:
+                not_null: "Please enter name."
+                min: "Please make sure your name is more than {{ limit }} characters."
+                max: "Please make sure your name is less than {{ limit }} characters."
+        bio:
+            validation:
+                not_null: "Please enter short text about you."
+                max: "Please make sure text about you is less than {{ limit }} characters."
+        street:
+            validation:
+                not_null: "Please enter your street."
+        city:
+            validation:
+                not_null: "Please enter your city."
+        state:
+            validation:
+                not_null: "Please enter your state."
+                not_usa: "Not allowed to set state."
+        country:
+            validation:
+                not_null: "Please enter your country."
+        zipCode:
+            validation:
+                not_null: "Please enter your zip code."
+        phoneNumber:
+            validation:
+                not_blank: "Please enter phone number."
+        payPal:
+            validation:
+                not_null: "Please enter your PayPal account."
+                mismatch: "Email addresses doesn't match."
+        expertiseBasedOn:
+            validation:
+                not_null: "Please enter your expertise based on field."
+        areaOfExpertise:
+            validation:
+                not_null: "Please enter your area of expertise."
+        socialNumber:
+            validation:
+                not_null: "Please enter your security social number."
+                min: "Number must be 9 digit length."
+                max: "Number must be 9 digit length."
+                exact: "Number must be 9 digit length."
+                not_usa: "Not allowed to set social security number."
+
+app:
+    user:
+        email:
+            unique: "This email address is already taken."
+        username:
+            unique: "This username is already taken."
+        type:
+            validation:
+                teacher: "You are not allowed to do this action."
+                student: "You are not allowed to do this action."
+        terms:
+            validation:
+                not_null: "You must accept terms and conditions."
+    photo:
+        validation:
+            mime_type: "Please upload one of the following formats 'JPG', 'JPEG', 'PNG'."
+            size: "This file is too big. Please upload a file up to 20MB."
+            not_null: "Something went wrong. Please upload your image."
+
+
+

@@ -54,7 +54,7 @@ class User extends BaseUser
     /**
      * @ORM\Column(type="boolean")
      *
-//     * @Assert\NotNull
+     * @Assert\NotNull
      */
     private $terms = false;
 

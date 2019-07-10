@@ -39,44 +39,14 @@ class UserRegisterType extends MasterUserType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        parent::buildForm($builder, $options);
+
         $builder
-            ->add('username', TextType::class, [
-                'required' => true,
-                'constraints' => array(
-                    new NotNull(array(
-                        "message" => "form.profile.terms.validation.not_null"
-                    ))
-                )
-            ])
-            ->add('name', TextType::class, [
-                'required' => true,
-                'constraints' => array(
-                    new NotNull(array(
-                        "message" => "form.profile.terms.validation.not_null"
-                    ))
-                )
-            ])
-            ->add('email', EmailType::class, [
-                'required' => true,
-                'constraints' => array(
-                    new NotNull(array(
-                        "message" => "form.profile.terms.validation.not_null"
-                    ))
-                )
-            ])
-            ->add('password', PasswordType::class, [
-                'required' => true,
-                'constraints' => array(
-                    new NotNull(array(
-                        "message" => "form.profile.terms.validation.not_null"
-                    ))
-                )
-            ])
             ->add('terms', CheckboxType::class, [
                 'required' => true,
                 'constraints' => array(
                     new NotNull(array(
-                        "message" => "form.profile.terms.validation.not_null"
+                        "message" => "form.user.terms.not_null"
                     ))
                 )
             ])
@@ -84,23 +54,22 @@ class UserRegisterType extends MasterUserType
 
         $builder->addEventListener(FormEvents::POST_SUBMIT, function (FormEvent $event) {
             $form = $event->getForm();
-            /**@var User $data */
-            $data = $event->getData();
+
             $userRepository = $this->doctrine->getRepository(User::class);
 
             $alreadyRegisterUser = $userRepository->findOneBy(array('email' => $form["email"]->getData()));
             if ($alreadyRegisterUser) {
-                $form["email"]->addError(new FormError('app.user.form.email.unique'));
+                $form["email"]->addError(new FormError('form.user.email.validation.unique'));
             }
 
             $alreadyRegisterUsername = $userRepository->findOneBy(array('username' => $form["username"]->getData()));
             if ($alreadyRegisterUsername) {
-                $form["username"]->addError(new FormError('app.user.form.username.unique'));
+                $form["username"]->addError(new FormError('form.user.username.validation.unique'));
             }
 
             $checkTerms = $userRepository->findOneBy(array('terms' => $form["terms"]->getData()));
             if ($checkTerms != true) {
-                $form["terms"]->addError(new FormError('app.user.form.terms.not_accepted'));
+                $form["terms"]->addError(new FormError('form.user.terms.not_null'));
             }
         });
     }
@@ -113,7 +82,7 @@ class UserRegisterType extends MasterUserType
         $resolver->setDefaults(array(
             'data_class' => User::class,
             'csrf_protection' => false,
-//            'translation_domain' => 'AppUser',
+            'translation_domain' => 'AppUser',
         ));
     }
 
