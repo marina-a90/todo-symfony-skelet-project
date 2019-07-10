@@ -13,7 +13,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Entity
  * @ORM\Table(name="`user`")
  *
- * @JMS\ExclusionPolicy("none")
+ * @JMS\ExclusionPolicy("all")
  *
  * @ORM\HasLifecycleCallbacks()
  */
@@ -25,14 +25,16 @@ class User extends BaseUser
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      *
-//     * @JMS\Groups({"details", "list", "public"})
+     * @JMS\Expose()
+     * @JMS\Groups({"details", "list", "public"})
      */
     protected $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      *
-//     * @JMS\Groups({"details", "list", "public"})
+     * @JMS\Expose()
+     * @JMS\Groups({"details", "list", "public"})
      */
     private $name;
 
