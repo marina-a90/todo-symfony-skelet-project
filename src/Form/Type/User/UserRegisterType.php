@@ -6,6 +6,7 @@ use Doctrine\Bundle\DoctrineBundle\Registry;
 use App\Entity\User\User;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormError;
@@ -63,7 +64,7 @@ class UserRegisterType extends MasterUserType
                     ))
                 )
             ])
-            ->add('password', TextType::class, [
+            ->add('password', PasswordType::class, [
                 'required' => true,
                 'constraints' => array(
                     new NotNull(array(
