@@ -43,6 +43,13 @@ RUN apt-get update && apt-get install -y zlib1g-dev libzmq3-dev \
 
 RUN docker-php-ext-install sysvsem
 
+#### mailer
+RUN apt-get update && apt-get install -q -y ssmtp mailutils && rm -rf /var/lib/apt/lists/*
+RUN echo "hostname=todo-api.com" > /etc/ssmtp/ssmtp.conf
+RUN echo "mailhub=maildev" >> /etc/ssmtp/ssmtp.conf
+RUN echo "sendmail_path=sendmail -i -t" >> /usr/local/etc/php/conf.d/php-sendmail.ini
+RUN echo "todo-api todo-api.com" >> /etc/hosts
+
 RUN useradd -ms /bin/bash todo
 
 #### SSH

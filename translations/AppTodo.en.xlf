@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en" target-language="en" datatype="plaintext" original="file.ext">
+    <header>
+      <tool tool-id="symfony" tool-name="Symfony"/>
+    </header>
+    <body>
+      <trans-unit id="2uAGjAJ" resname="form.todo">
+        <source>form.todo</source>
+        <target>Please give a name to your todo</target>
+      </trans-unit>
+      <trans-unit id="dULouv6" resname="form.not_found_todo">
+        <source>form.not_found_todo</source>
+        <target>Todo not found</target>
+      </trans-unit>
+      <trans-unit id="VyaTbq3" resname="form.not_found_todos">
+        <source>form.not_found_todos</source>
+        <target>Todos not found</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

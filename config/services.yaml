@@ -42,33 +42,23 @@ services:
         arguments: ["@fos_oauth_server.storage", "%fos_oauth_server.server.options%"]
         public: true
 
-# Sonata Media
-    Sonata\MediaBundle\Provider\ImageProvider: '@sonata.media.provider.image'
-
-# Admin panel, Sonata
-    admin.todo:
-        class: App\Admin\TodoAdmin
-        arguments: [~, App\Entity\Todo\Todo, ~]
-        tags:
-            - { name: sonata.admin, manager_type: orm, label: Todo, group: 'Todo' }
-
-    admin.user:
-        class: App\Admin\UserAdmin
-        arguments: [~, App\Entity\User\User, ~]
-        tags:
-            - { name: sonata.admin, manager_type: orm, label: User, group: 'User' }
-
-    admin.basic_page:
-        class: App\Admin\BasicPageAdmin
-        arguments: [~, App\Entity\Pages\BasicPage, ~]
-        tags:
-            - { name: sonata.admin, manager_type: orm, label: Basic Page, group: 'pages' }
-
-    admin.contact_page:
-        class: App\Admin\ContactPageAdmin
-        arguments: [~, App\Entity\Pages\ContactPage, ~]
-        tags:
-            - { name: sonata.admin, manager_type: orm, label: Contact Page, group: 'pages' }
+    # Mailer
+    app.mailer.user.user_mailer:
+        class: App\Service\Mailer\User\UserMailer
+        public: true
+        arguments:
+            - '@mailer'
+            - '@router'
+            - '@twig'
+            - from_email:
+                  confirmation: "%fos_user.registration.confirmation.from_email%"
+                  resetting: "%fos_user.resetting.email.from_email%"
+              template:
+                  confirmation: "%fos_user.registration.confirmation.template%"
+                  resetting: "%fos_user.resetting.email.template%"
+              url:
+                  confirmation: "%user_url_confirmation%"
+                  resetting: "%user_url_resetting%"
 
 # Forms
     app.user.user_register.type.form:
@@ -76,7 +66,25 @@ services:
         arguments: ["@doctrine"]
         tags:
             - { name: form.type }
-                
+
+# Listener
+    app.event.authorable.listener:
+        class: App\EventListener\AuthorableEntityListener
+        calls:
+            - [setContainer, ['@service_container']]
+        tags:
+            - { name: doctrine.event_listener, event: prePersist}
+
+# Sonata blocks
+    sonata.block.service.blocks:
+        class: App\Service\BlocksAdminService
+        arguments: [ "sonata.block.service.blocks", '@templating',"@doctrine.orm.entity_manager" ]
+        tags:
+            - { name: sonata.block }
+
+# Sonata Media
+    Sonata\MediaBundle\Provider\ImageProvider: '@sonata.media.provider.image'
+
 # Managers
     app.todo.todo.manager:
         class: App\Service\Manager\Todo\TodoManager

@@ -1,0 +1,9 @@
+{% extends admin.getTemplate('base_list_field') %}
+
+{% block field %}
+
+    {% set string = value|striptags %}
+
+    {{ string|length > 50 ? string|slice(0, 100) ~ '...' : string }}
+
+{% endblock %}

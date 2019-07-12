@@ -10,7 +10,7 @@ use JMS\Serializer\Annotation as JMS;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\User\UserRepository")
  * @ORM\Table(name="`user`")
  *
  * @JMS\ExclusionPolicy("all")

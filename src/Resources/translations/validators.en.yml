@@ -18,52 +18,52 @@ form:
                 max: "Please make sure that your username is less than {{ limit }} characters."
                 pattern: "Please add a valid password."
                 unique: "This username is already taken. Please choose another one."
-    profile:
-        name:
-            validation:
-                not_null: "Please enter name."
-                min: "Please make sure your name is more than {{ limit }} characters."
-                max: "Please make sure your name is less than {{ limit }} characters."
-        bio:
-            validation:
-                not_null: "Please enter short text about you."
-                max: "Please make sure text about you is less than {{ limit }} characters."
-        street:
-            validation:
-                not_null: "Please enter your street."
-        city:
-            validation:
-                not_null: "Please enter your city."
-        state:
-            validation:
-                not_null: "Please enter your state."
-                not_usa: "Not allowed to set state."
-        country:
-            validation:
-                not_null: "Please enter your country."
-        zipCode:
-            validation:
-                not_null: "Please enter your zip code."
-        phoneNumber:
-            validation:
-                not_blank: "Please enter phone number."
-        payPal:
-            validation:
-                not_null: "Please enter your PayPal account."
-                mismatch: "Email addresses doesn't match."
-        expertiseBasedOn:
-            validation:
-                not_null: "Please enter your expertise based on field."
-        areaOfExpertise:
-            validation:
-                not_null: "Please enter your area of expertise."
-        socialNumber:
-            validation:
-                not_null: "Please enter your security social number."
-                min: "Number must be 9 digit length."
-                max: "Number must be 9 digit length."
-                exact: "Number must be 9 digit length."
-                not_usa: "Not allowed to set social security number."
+#    profile:
+#        name:
+#            validation:
+#                not_null: "Please enter name."
+#                min: "Please make sure your name is more than {{ limit }} characters."
+#                max: "Please make sure your name is less than {{ limit }} characters."
+#        bio:
+#            validation:
+#                not_null: "Please enter short text about you."
+#                max: "Please make sure text about you is less than {{ limit }} characters."
+#        street:
+#            validation:
+#                not_null: "Please enter your street."
+#        city:
+#            validation:
+#                not_null: "Please enter your city."
+#        state:
+#            validation:
+#                not_null: "Please enter your state."
+#                not_usa: "Not allowed to set state."
+#        country:
+#            validation:
+#                not_null: "Please enter your country."
+#        zipCode:
+#            validation:
+#                not_null: "Please enter your zip code."
+#        phoneNumber:
+#            validation:
+#                not_blank: "Please enter phone number."
+#        payPal:
+#            validation:
+#                not_null: "Please enter your PayPal account."
+#                mismatch: "Email addresses doesn't match."
+#        expertiseBasedOn:
+#            validation:
+#                not_null: "Please enter your expertise based on field."
+#        areaOfExpertise:
+#            validation:
+#                not_null: "Please enter your area of expertise."
+#        socialNumber:
+#            validation:
+#                not_null: "Please enter your security social number."
+#                min: "Number must be 9 digit length."
+#                max: "Number must be 9 digit length."
+#                exact: "Number must be 9 digit length."
+#                not_usa: "Not allowed to set social security number."
 
 app:
     user:

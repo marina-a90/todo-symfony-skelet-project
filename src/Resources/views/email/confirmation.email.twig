@@ -1,0 +1,29 @@
+{% extends 'base.email.twig' %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block subject %}
+    Registration completed.
+{% endblock %}
+
+{% block content %}
+
+    <h1 style="color: #1e307c; font-size: 42px; font-family: Arial, sans-serif; font-weight: 700; line-height: 48px;">
+        Hello {{ user.name }}, welcome to Todo!
+    </h1>
+
+    <p style="font-size: 17px; font-family: Arial, sans-serif; color: #4d4d4d;">
+         Thank you for registering! 
+    </p>
+
+    <p style="font-size: 17px; font-family: Arial, sans-serif; color: #4d4d4d;">
+        In order to complete your profile, please click on the activation link below.
+    </p>
+
+    <p style="margin-top: 50px">
+        <a style="display: inline-block; text-decoration: none; border-radius: 55px; font-family: Arial, sans-serif; font-size: 17px; font-weight: bold; height: 55px; padding: 0 44px; line-height: 55px; background-color: #44c6c2; color: #fff" href="{{ confirmationUrl }}">
+            Activate your account
+        </a>
+    </p>
+
+{% endblock %}

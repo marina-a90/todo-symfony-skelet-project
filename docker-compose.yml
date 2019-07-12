@@ -18,6 +18,7 @@ services:
     #    hostname: todo-api.com
     links:
       - devdb
+      - maildev:maildev
     volumes:
       - ./:/app/
       - ./docker/php/zshrc.tpl:/root/.zshrc
@@ -38,6 +39,17 @@ services:
       MYSQL_DATABASE: todo
       MYSQL_USER: todo
       MYSQL_PASSWORD: todo
+
+  maildev:
+    image: djfarrelly/maildev
+    command: bin/maildev
+      --web 80
+      --smtp 25
+      --outgoing-host smtp.gmail.com
+      --outgoing-user ''
+      --outgoing-pass ''
+    ports:
+      - "8081:80"
 
 volumes:
   esdata1:

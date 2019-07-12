@@ -99,7 +99,7 @@ abstract class MasterUserType extends AbstractType
                 $username = $data->getUsername();
 
                 if ($username) {
-                    if ((strpos($username, 'admin') !== false) || (strpos($username, 'wayzob') !== false)) {
+                    if ((strpos($username, 'admin') !== false)) {
                         $form["username"]->addError(new FormError('form.user.username.validation.pattern'));
                     }
                 }

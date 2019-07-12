@@ -1,0 +1,103 @@
+{% extends 'SonataBlockBundle:Block:block_base.html.twig' %}
+
+{% block block %}
+
+    <div class="row">
+
+        {# start left side #}
+
+        <div class="col-sm-4">
+            {% for key, value in sonata_admin.adminPool.adminGroups %}
+            <div style="background-color: white; margin-top: -15px; padding: 4px">
+                <div class="box-header" style="background-color: white; color: #0b3e6f">
+                    <h4 class="box-title" style="padding-left: 10px">{{ value.label }}</h4>
+                </div>
+                <div class="box-body">
+                    <table class="table table-hover">
+                        <tbody>
+                        {% for key1, value1 in value.items %}
+
+                            <tr>
+                                <td class="sonata-ba-list-label" width="40%">
+                                    {{ value1.label }}
+                                </td>
+                                <td>
+                                    <div class="btn-group">
+                                        <a class="btn btn-link btn-flat" href="{{ path(value1.route) }}">
+                                            <i class="fa fa-list" aria-hidden="true"></i>
+                                            List
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        {# end left side #}
+
+
+
+        {# start middle side #}
+
+        <div class="col-sm-5" style="margin-top: -10px">
+
+            <div class="col-sm-12" style="margin-left: -35px; width: 112%">
+                {% for key, value in content %}
+                <div class="col-lg-3">
+                    <div class="small-box bg-aqua">
+                        <div class="inner">
+                            <h3>{{ value.count }}</h3>
+                            <p>{{ value.label|capitalize }}</p>
+                        </div>
+                        <div class="icon" style="color: #bbebff; font-size: 40px; padding-top: 20px; padding-right: 13px">
+                            <i class="{{ value.image }}"></i>
+                        </div>
+                        <a href="{{ path(value.route) }}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+
+
+            <div class="col-sm-12" style="margin-left: -22px; width: 108%">
+                <div class="box-danger" style="background-color: white">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Latest Members</h3>
+                        <span class="label label-danger">{{ content.user.count }} Members </span>
+                        <div class="box-tools pull-right" style="margin-top: 5px; margin-right: 10px">
+                            <a href="{{ path(content.user.route) }}" class="uppercase">View All Users</a>
+                        </div>
+                    </div>
+                    <div class="box-body" style="padding-bottom: 14px">
+                        <ul class="users-list clearfix">
+                            {% for key, value in users %}
+                                <li>
+                                    <div>
+                                    {% set _profile_uri = path('admin_app_user_user_show', {'id': value.id}) %}
+                                    </div>
+                                    <a class="users-list-name" href="{{ _profile_uri }}">{{ value.name }}</a>
+                                    <span class="users-list-date users-list-name" style="color: grey">{{ value.createdAt|date("F j, Y H:i") }}</span>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="box-footer text-right" style="margin-right: 10px">
+                        <a href="{{ path(content.user.route) }}" class="uppercase">View All Users</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        {# end middle side #}
+
+
+    </div>
+
+{% endblock %}

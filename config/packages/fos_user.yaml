@@ -2,6 +2,16 @@ fos_user:
   db_driver: orm # other valid values are 'mongodb' and 'couchdb'
   firewall_name: api
   user_class: App\Entity\User\User
+  registration:
+    confirmation:
+      enabled: true
+      template: email/confirmation.email.twig
+  resetting:
+    token_ttl: 86400
+    email:
+      template: email/resetting.email.twig
   from_email:
-    address: "eton@email.com"
-    sender_name: "eton@email.com"
+    address: 'email@etondigital.com' # for example your email
+    sender_name: 'email@etondigital.com' # for example your email
+  service:
+    mailer: app.mailer.user.user_mailer # app.user.mailer.twig_swift

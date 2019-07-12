@@ -31,6 +31,10 @@ fos_oauth_server_token:
 fos_oauth_server_authorize:
   resource: "@FOSOAuthServerBundle/Resources/config/routing/authorize.xml"
 
+fos_user_registration_check_email:
+  path: register/check-email
+  defaults: { _controller: FOSUserBundle:Registration:checkEmail }
+
 # Sonata Media
 gallery:
   resource: '@SonataMediaBundle/Resources/config/routing/gallery.xml'

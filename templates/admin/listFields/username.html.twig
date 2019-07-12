@@ -1,0 +1,24 @@
+{% extends admin.getTemplate('base_list_field') %}
+
+{% block field %}
+
+    {#{{ dump(object.roles) }}#}
+
+    {% if "ROLE_ADMIN" in object.roles %}
+
+        <span style="color: #ff8b91;"><b> {{ value }} </b></span>
+
+    {% elseif "ROLE_SUPER_ADMIN" in object.roles %}
+
+        <span style="color: #ff8b91;"><b> {{ value }} </b></span>
+
+
+    {% else %}
+
+        <span style="color: #8ea2ff;"><b> {{ value }} </b></span>
+
+
+    {% endif %}
+
+
+{% endblock %}

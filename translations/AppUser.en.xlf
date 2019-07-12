@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en" target-language="en" datatype="plaintext" original="file.ext">
+    <header>
+      <tool tool-id="symfony" tool-name="Symfony"/>
+    </header>
+    <body>
+      <trans-unit id="eqR0LZq" resname="form.name">
+        <source>form.name</source>
+        <target>Name</target>
+      </trans-unit>
+      <trans-unit id="yjqmSBK" resname="form.password">
+        <source>form.password</source>
+        <target>Password</target>
+      </trans-unit>
+      <trans-unit id="IY9XZs0" resname="form.current_password">
+        <source>form.current_password</source>
+        <target>Current password</target>
+      </trans-unit>
+      <trans-unit id="JTbuLK0" resname="form.new_password">
+        <source>form.new_password</source>
+        <target>New password</target>
+      </trans-unit>
+      <trans-unit id="Y4Q7qvl" resname="form.password_confirmation">
+        <source>form.password_confirmation</source>
+        <target>Password confirmation</target>
+      </trans-unit>
+      <trans-unit id="Ff9nnG5" resname="security.login.email">
+        <source>security.login.email</source>
+        <target>Email</target>
+      </trans-unit>
+      <trans-unit id="N_kLMwm" resname="security.login.password">
+        <source>security.login.password</source>
+        <target>Password</target>
+      </trans-unit>
+      <trans-unit id="8DSptbg" resname="security.login.remember_me">
+        <source>security.login.remember_me</source>
+        <target>Remember me</target>
+      </trans-unit>
+      <trans-unit id=".GLo7uO" resname="security.login.sign_in">
+        <source>security.login.sign_in</source>
+        <target>Sign in</target>
+      </trans-unit>
+      <trans-unit id="9HqONWZ" resname="security.user.no_users">
+        <source>security.user.no_users</source>
+        <target>This user is not found.</target>
+      </trans-unit>
+      <trans-unit id="z33faUf" resname="security.user.not_logged_in">
+        <source>security.user.not_logged_in</source>
+        <target>Please log in.</target>
+      </trans-unit>
+      <trans-unit id="AvELJ7b" resname="security.user.registration_ban">
+        <source>security.user.registration_ban</source>
+        <target>You cannot register while you are logged in. To make a new account, please log out first.</target>
+      </trans-unit>
+      <trans-unit id="FovxyqX" resname="security.user.username_empty">
+        <source>security.user.username_empty</source>
+        <target>Username is empty.</target>
+      </trans-unit>
+      <trans-unit id="aqehzRD" resname="security.user.is_banned">
+        <source>security.user.is_banned</source>
+        <target>This user is banned</target>
+      </trans-unit>
+      <trans-unit id="It6.hhy" resname="security.user.is_not_enabled">
+        <source>security.user.is_not_enabled</source>
+        <target>You still haven't activated your account. Please go to your email inbox and click the activation link.</target>
+      </trans-unit>
+      <trans-unit id="XBiGt3j" resname="security.user.registration_complete">
+        <source>security.user.registration_complete</source>
+        <target>Your already complete registration. Please wait for the admin to approve your data.</target>
+      </trans-unit>
+      <trans-unit id="RmTnKI8" resname="security.user.is_blocked">
+        <source>security.user.is_blocked</source>
+        <target>Sorry, we don't recognize that email/username or password.</target>
+      </trans-unit>
+      <trans-unit id="OEMn7SJ" resname="security.user.not_have_permission">
+        <source>security.user.not_have_permission</source>
+        <target>You do not have permission for the action.</target>
+      </trans-unit>
+      <trans-unit id="G5D0RFI" resname="security.user.not_set_phone_number">
+        <source>security.user.not_set_phone_number</source>
+        <target>Please set phone number.</target>
+      </trans-unit>
+      <trans-unit id="SbqZYHp" resname="application.token.invalid_credentials">
+        <source>application.token.invalid_credentials</source>
+        <target>Invalid client credentials.</target>
+      </trans-unit>
+      <trans-unit id="Lrc7jf." resname="application.token.invalid_client_id">
+        <source>application.token.invalid_client_id</source>
+        <target>Invalid client id.</target>
+      </trans-unit>
+      <trans-unit id="LFsg7qs" resname="application.user.username.blank_username">
+        <source>application.user.username.blank_username</source>
+        <target>Username is required.</target>
+      </trans-unit>
+      <trans-unit id="G_G9rjd" resname="application.user.username.this_is_you">
+        <source>application.user.username.this_is_you</source>
+        <target>This is you.</target>
+      </trans-unit>
+      <trans-unit id="SY6tfhE" resname="application.user.username.already_taken">
+        <source>application.user.username.already_taken</source>
+        <target>Username is already taken.</target>
+      </trans-unit>
+      <trans-unit id="8y5LDa0" resname="application.user.username.available">
+        <source>application.user.username.available</source>
+        <target>Username is available.</target>
+      </trans-unit>
+      <trans-unit id="CRAK5Rd" resname="registration.token.not_valid">
+        <source>registration.token.not_valid</source>
+        <target>Token is not valid.</target>
+      </trans-unit>
+      <trans-unit id="xOiaD3s" resname="resetting.password.already_requested">
+        <source>resetting.password.already_requested</source>
+        <target>This user has already requested password reset.</target>
+      </trans-unit>
+      <trans-unit id="wU9_C7Y" resname="resetting.password.account_disabled">
+        <source>resetting.password.account_disabled</source>
+        <target>Account is blocked.</target>
+      </trans-unit>
+      <trans-unit id="Ytg.P_O" resname="resetting.password.token_expired">
+        <source>resetting.password.token_expired</source>
+        <target>Token expired.</target>
+      </trans-unit>
+      <trans-unit id="A.dL4qJ" resname="message.resetting.request">
+        <source>message.resetting.request</source>
+        <target>Thank you, please check your mail for further instructions.</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

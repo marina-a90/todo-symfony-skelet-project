@@ -5,9 +5,6 @@ namespace App\Form\Type\User;
 use Doctrine\Bundle\DoctrineBundle\Registry;
 use App\Entity\User\User;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-use Symfony\Component\Form\Extension\Core\Type\EmailType;
-use Symfony\Component\Form\Extension\Core\Type\PasswordType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\Form\FormEvent;
@@ -59,17 +56,17 @@ class UserRegisterType extends MasterUserType
 
             $alreadyRegisterUser = $userRepository->findOneBy(array('email' => $form["email"]->getData()));
             if ($alreadyRegisterUser) {
-                $form["email"]->addError(new FormError('form.user.email.validation.unique'));
+                $form["email"]->addError(new FormError('app.user.email.unique'));
             }
 
             $alreadyRegisterUsername = $userRepository->findOneBy(array('username' => $form["username"]->getData()));
             if ($alreadyRegisterUsername) {
-                $form["username"]->addError(new FormError('form.user.username.validation.unique'));
+                $form["username"]->addError(new FormError('app.user.username.unique'));
             }
 
             $checkTerms = $userRepository->findOneBy(array('terms' => $form["terms"]->getData()));
             if ($checkTerms != true) {
-                $form["terms"]->addError(new FormError('form.user.terms.not_null'));
+                $form["terms"]->addError(new FormError('app.user.terms.validation.not_null'));
             }
         });
     }
