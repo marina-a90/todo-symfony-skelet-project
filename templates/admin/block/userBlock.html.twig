@@ -6,9 +6,9 @@
 {#        {% set _user_image        = false %}#}
 
         <li class="user-header {{ _bg_class }}">
-{#            {% if _user_image %}#}
-{#                <img src="{{ _user_image }}" class="img-circle" alt="Avatar" />#}
-{#            {% endif %}#}
+            {% if _user_image %}
+                <img src="{{ _user_image }}" class="img-circle" alt="Avatar" />
+            {% endif %}
             <p>{{ app.user.email }}</p>
         </li>
 

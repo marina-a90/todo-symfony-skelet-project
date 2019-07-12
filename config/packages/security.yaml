@@ -12,12 +12,11 @@ security:
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
         fos_userbundle:
-            id: fos_user.user_provider.username_email  # Logging by Username or Email
+            id: fos_user.user_provider.username_email
     firewalls:
         oauth:
             pattern:    ^/api/v1/oauth/
             security:   false
-
         api:
             pattern: ^/api                             # All URLs are protected
             fos_oauth: true                            # OAuth2 protected resource
@@ -42,4 +41,4 @@ security:
     # Note: Only the *first* access control that matches will be used
     access_control:
         - { path: ^/admin, roles: ROLE_ADMIN }
-#     - { path: ^/api, roles: [ IS_AUTHENTICATED_FULLY ] }
+#        - { path: ^/api, roles: ROLE_ADMIN }

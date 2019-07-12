@@ -22,9 +22,7 @@ class BasicPageAdmin extends AbstractAdmin
         $formMapper
             ->add('title')
             ->add('intro')
-            ->add('body', CKEditorType::class, [
-                'config_name' => 'standard'
-            ])
+            ->add('body')
         ;
     }
 
@@ -49,9 +47,6 @@ class BasicPageAdmin extends AbstractAdmin
 
             ->addIdentifier('id')
             ->addIdentifier('title')
-
-            //->add('intro')
-            //->add('body', null, ['editable' => true, 'collapse' => true])
 
             ->add('intro', null, [
                 'editable' => false,
@@ -89,12 +84,12 @@ class BasicPageAdmin extends AbstractAdmin
         ;
     }
 
-    /**
-     * {@inheritdoc }
-     */
-    protected function configureRoutes(RouteCollection $collection)
-    {
-        $collection->remove('create');
-        $collection->remove('delete');
-    }
+//    /**
+//     * {@inheritdoc }
+//     */
+//    protected function configureRoutes(RouteCollection $collection)
+//    {
+//        $collection->remove('create');
+//        $collection->remove('delete');
+//    }
 }

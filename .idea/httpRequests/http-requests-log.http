@@ -2,6 +2,30 @@ POST http://todo-api.com/api/v1/oauth/v2/token?client_id=1_5w8zrdasdafr4tregd454
 Accept: application/json
 Cache-Control: no-cache
 
+<> 2019-07-12T032915.200.json
+
+###
+
+POST http://todo-api.com/api/v1/oauth/v2/token?client_id=1_5w8zrdasdafr4tregd454cw0c0kswcgs0oks40s&client_secret=sdgggskokererg4232404gc4csdgfdsgf8s8ck5s&username=admin&password=etondigital&grant_type=password
+Accept: application/json
+Cache-Control: no-cache
+
+<> 2019-07-12T032642.200.json
+
+###
+
+POST http://todo-api.com/api/v1/oauth/v2/token?client_id=1_5w8zrdasdafr4tregd454cw0c0kswcgs0oks40s&client_secret=sdgggskokererg4232404gc4csdgfdsgf8s8ck5s&username=admin&password=etondigital&grant_type=password
+Accept: application/json
+Cache-Control: no-cache
+
+<> 2019-07-12T115840.200.json
+
+###
+
+POST http://todo-api.com/api/v1/oauth/v2/token?client_id=1_5w8zrdasdafr4tregd454cw0c0kswcgs0oks40s&client_secret=sdgggskokererg4232404gc4csdgfdsgf8s8ck5s&username=admin&password=etondigital&grant_type=password
+Accept: application/json
+Cache-Control: no-cache
+
 <> 2019-07-12T104829.200.json
 
 ###

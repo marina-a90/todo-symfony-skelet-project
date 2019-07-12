@@ -104,9 +104,9 @@ class UserAdmin extends AbstractAdmin
         $listMapper
             ->add('id')
             ->add('email')
-            ->add('name', null, ['label' => 'Name', 'editable' => true])
+            ->add('name', null, ['label' => 'Name', 'editable' => true, 'template' => 'admin/listFields/username.html.twig'])
             ->add('username')
-            ->add('roles', null, ['label' => 'Roles'])
+            ->add('roles', null, ['label' => 'Roles', 'template' => 'admin/listFields/roles.html.twig'])
             ->add('deleted')
             ->add('enabled', null, ['label' => "Enabled"])
             ->add('createdAt', null, ['label' => 'Date of registration'])
