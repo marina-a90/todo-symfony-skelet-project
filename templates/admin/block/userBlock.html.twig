@@ -3,7 +3,7 @@
         {% set _bg_class          = "bg-light-blue" %}
         {% set _logout_uri        = url('fos_user_security_logout') %}
         {% set _logout_text       = 'layout.logout'|trans({}, 'FOSUserBundle') %}
-{#        {% set _user_image        = false %}#}
+        {% set _user_image        = false %}
 
         <li class="user-header {{ _bg_class }}">
             {% if _user_image %}
