@@ -3,6 +3,7 @@ sonata_media:
         media: App\Application\Sonata\MediaBundle\Entity\Media
         gallery: App\Application\Sonata\MediaBundle\Entity\Gallery
         gallery_has_media: App\Application\Sonata\MediaBundle\Entity\GalleryHasMedia
+        category: App\Application\Sonata\ClassificationBundle\Entity\Category
 
     db_driver: doctrine_orm # or doctrine_mongodb, doctrine_phpcr it is mandatory to choose one here
     default_context: default
@@ -14,15 +15,21 @@ sonata_media:
                 - sonata.media.provider.image
                 - sonata.media.provider.file
                 - sonata.media.provider.vimeo
-
             formats:
                 small: { width: 100 , quality: 70}
                 big:   { width: 500 , quality: 70}
 
+        user_photo:
+            providers:
+                - sonata.media.provider.image
+            formats:
+                small: { width: 100, quality: 90}
+                big:   { width: 400, quality: 90}
+
     cdn:
         server:
-            path: "%base_url%/uploads/media"
-#            path: "%env(CDN_URL)%/uploads/media"
+#            path: "%base_url%/uploads/media"
+            path: "%env(CDN_URL)%/uploads/media"
 
     filesystem:
         local:

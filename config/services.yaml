@@ -5,6 +5,7 @@
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 imports:
     - { resource: 'parameters.yaml' }
+
 parameters:
     locale: 'en'
     fos_oauth_server.server.class: App\Service\OAuth2
@@ -84,6 +85,20 @@ services:
 
 # Sonata Media
     Sonata\MediaBundle\Provider\ImageProvider: '@sonata.media.provider.image'
+
+## Event Subscribers
+#    app.event.subscriber.media_event_subscriber:
+#        class: App\Event\Media\MediaSubscriber
+#        arguments: [ "@doctrine.orm.entity_manager" ]
+#        tags:
+#            - { name: kernel.event_subscriber }
+
+# Serializer
+    app.media_serializer_subscriber:
+        class: App\EventListener\Serializer\MediaSerializerSubscriber
+        arguments: ['@sonata.media.provider.image']
+        tags:
+            - { name: jms_serializer.event_subscriber }
 
 # Managers
     app.todo.todo.manager:

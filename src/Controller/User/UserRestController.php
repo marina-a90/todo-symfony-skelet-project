@@ -2,20 +2,27 @@
 
 namespace App\Controller\User;
 
+use App\Application\Sonata\MediaBundle\Entity\Media;
 use App\Controller\BaseRestController;
 use App\Entity\OAuth\Client;
 use App\Entity\User\User;
+use App\Event\Media\MediaEvent;
 use App\Form\Type\User\ChangePasswordFormType;
 use App\Form\Type\User\ConfirmRegistrationType;
 use App\Form\Type\User\ForgotPasswordType;
+use App\Form\Type\User\PhotoType;
 use App\Form\Type\User\ResettingType;
 use App\Form\Type\User\UserRegisterType;
+use App\Security\User\UserVoter;
+use App\Utils\Media\ApiUploadedFile;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use FOS\UserBundle\Event\FilterUserResponseEvent;
 use FOS\UserBundle\Event\FormEvent;
 use FOS\UserBundle\Event\GetResponseUserEvent;
 use FOS\UserBundle\Event\UserEvent;
 use FOS\UserBundle\FOSUserEvents;
 use FOS\UserBundle\Util\TokenGeneratorInterface;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -25,6 +32,14 @@ use Swagger\Annotations as SWG;
 
 class UserRestController extends BaseRestController
 {
+
+    private $eventDispatcher;
+
+    public function __construct(EventDispatcherInterface $eventDispatcher = null)
+    {
+        $this->eventDispatcher = $eventDispatcher;
+    }
+
     /**
      * Get list of members
      *
@@ -569,7 +584,13 @@ class UserRestController extends BaseRestController
     {
         $user = $this->getUser();
         if (!$user) {
-            return $this->forbidden(['message' =>'You do not have permission for the action']);
+            return $this->forbidden(
+                $this->get('translator')->trans(
+                    'security.user.not_have_permission',
+                    [],
+                    'AppUser'
+                )
+            );
         }
 
         $dispatcher = $this->get('event_dispatcher');
@@ -611,6 +632,115 @@ class UserRestController extends BaseRestController
             return $this->bad($form);
         }
     }
+
+    /**
+     * Set user photo action.
+     *
+     * @Route("/user/photo", methods={"POST"})
+     *
+     * @SWG\Post(
+     *     tags={"User Photo"},
+     *     summary="User photo",
+     *     description="User photo",
+     *     consumes={"multipart/form-data"},
+     *     produces={"*", "application/json"},
+     *     @SWG\Parameter(
+     *         name="photo[binaryContent]",
+     *         in="formData",
+     *         type="file",
+     *         required=false,
+     *         format="multipart/form-data",
+     *         description="The field is used to save the photo"
+     *     ),
+     *     @SWG\Response(
+     *          response=201,
+     *          description="Success",
+     *          @SWG\Schema(ref=@Model(type=User::class))
+     *      ),
+     *      @SWG\Response(
+     *          response=400, description="Data is invalid"
+     *      ),
+     *      @SWG\Tag(name="user"),
+     *      @SWG\SecurityScheme(
+     *         securityDefinition="Bearer",
+     *         type="apiKey",
+     *         name="Authorization",
+     *         in="header"
+     *     )
+     *  )
+     * @param Request $request
+     *
+     * @return View
+     */
+    public function postUserPhotoAction(Request $request)
+    {
+        $user = $this->getUser();
+
+        if (empty($user)) {
+            return $this->forbidden(
+                $this->get('translator')->trans(
+                    'security.user.not_have_permission',
+                    [],
+                    'AppUser'
+                )
+            );
+        }
+
+        $this->denyAccessUnlessGranted(UserVoter::EDIT_USER, $user);
+
+        // check if the user already has a photo
+        /** @var Media $oldMedia */
+        $oldMedia = $user->getPhoto();
+
+        $form = $this->createForm(PhotoType::class, $user, [
+            'method' => Request::METHOD_POST,
+            'csrf_protection' => false
+        ]);
+
+        $form->handleRequest($request);
+
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $data = $form->getData();
+            $userManager = $this->getEntityManager();
+
+            if ($oldMedia) {
+                $mediaManager = $this->get('sonata.media.manager.media');
+
+                // delete old user photo before posting a new one
+                $provider = $this->get($oldMedia->getProviderName());
+                $provider->removeThumbnails($oldMedia);
+                $mediaManager->delete($oldMedia);
+            }
+
+//            $photo = $data->getPhoto();
+//            dump($photo); exit;
+
+
+
+//            // dispatch the media event when the photo is created
+//            $event = new MediaEvent($data);
+//
+//            if ($this->eventDispatcher) {
+//                $this->eventDispatcher->dispatch(MediaEvent::PHOTO, $event);
+//            }
+//
+
+            $userManager->save($data, true);
+
+            return $this->created($data);
+        }
+
+        return $this->bad($form);
+    }
+
+
+    // serial.
+    private function getUploadsDir()
+    {
+        return $this->getParameter('image');
+    }
+
 
     /**
      * Get entity manager

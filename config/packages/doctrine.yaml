@@ -80,9 +80,9 @@ doctrine:
                 naming_strategy: doctrine.orm.naming_strategy.underscore
                 auto_mapping: true
                 mappings:
-#                    ApplicationSonataClassificationBundle: ~
+                    ApplicationSonataClassificationBundle: ~
                     SonataClassificationBundle: ~
-#                    ApplicationSonataMediaBundle: ~
+                    ApplicationSonataMediaBundle: ~
                     SonataMediaBundle: ~
                     App:
                         is_bundle: false

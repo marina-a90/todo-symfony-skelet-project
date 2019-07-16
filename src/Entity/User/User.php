@@ -3,6 +3,7 @@
 
 namespace App\Entity\User;
 
+use App\Application\Sonata\MediaBundle\Entity\Media;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
@@ -60,6 +61,16 @@ class User extends BaseUser
      */
     private $terms = false;
 
+    /**
+     * @var Media
+     *
+     * @ORM\ManyToOne(targetEntity="App\Application\Sonata\MediaBundle\Entity\Media", cascade={"persist"}, fetch="LAZY")
+     *
+     * @JMS\Expose()
+     * @JMS\Groups({"details", "list", "public", "short"})
+     */
+    private $photo;
+
     public function __construct()
     {
         parent::__construct();
@@ -107,5 +118,35 @@ class User extends BaseUser
         $this->terms = $terms;
 
         return $this;
+    }
+
+    /**
+     * @return Media
+     */
+    public function getPhoto()
+    {
+        return $this->photo;
+    }
+
+    /**
+     * @param Media $photo
+     * @return self
+     */
+    public function setPhoto($photo)
+    {
+        $this->photo = $photo;
+
+        return $this;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getPhotoId()
+    {
+        if ($this->getPhoto()) {
+            return $this->getPhoto()->getId();
+        }
+        return null;
     }
 }
