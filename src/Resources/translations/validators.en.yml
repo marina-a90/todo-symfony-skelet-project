@@ -80,9 +80,9 @@ app:
                 not_null: "You must accept terms and conditions."
     photo:
         validation:
-            mime_type: "Please upload one of the following formats 'JPG', 'JPEG', 'PNG'."
-            size: "This file is too big. Please upload a file up to 20MB."
-            not_null: "Something went wrong. Please upload your image."
+            mime_type: "Please uploads one of the following formats 'JPG', 'JPEG', 'PNG'."
+            size: "This file is too big. Please uploads a file up to 20MB."
+            not_null: "Something went wrong. Please uploads your image."
 
 
 
