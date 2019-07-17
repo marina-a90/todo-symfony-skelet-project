@@ -2,6 +2,30 @@ POST http://todo-api.com/api/v1/oauth/v2/token?client_id=1_5w8zrdasdafr4tregd454
 Accept: application/json
 Cache-Control: no-cache
 
+<> 2019-07-17T112753.200.json
+
+###
+
+POST http://todo-api.com/api/v1/oauth/v2/token?client_id=1_5w8zrdasdafr4tregd454cw0c0kswcgs0oks40s&client_secret=sdgggskokererg4232404gc4csdgfdsgf8s8ck5s&username=user&password=useruser&grant_type=password
+Accept: application/json
+Cache-Control: no-cache
+
+<> 2019-07-17T112610.400.json
+
+###
+
+POST http://todo-api.com/api/v1/oauth/v2/token?client_id=1_5w8zrdasdafr4tregd454cw0c0kswcgs0oks40s&client_secret=sdgggskokererg4232404gc4csdgfdsgf8s8ck5s&username=user&password=useruser&grant_type=password
+Accept: application/json
+Cache-Control: no-cache
+
+<> 2019-07-17T112503.400.json
+
+###
+
+POST http://todo-api.com/api/v1/oauth/v2/token?client_id=1_5w8zrdasdafr4tregd454cw0c0kswcgs0oks40s&client_secret=sdgggskokererg4232404gc4csdgfdsgf8s8ck5s&username=admin&password=etondigital&grant_type=password
+Accept: application/json
+Cache-Control: no-cache
+
 <> 2019-07-16T115535.200.json
 
 ###
@@ -371,30 +395,6 @@ Accept: */*
 Cache-Control: no-cache
 
 <> 2019-07-08T031317.404.json
-
-###
-
-POST http://todo-api.com/api/v1/oauth/v2/token?client_id=1_5w8zrdasdafr4tregd454cw0c0kswcgs0oks40s&client_secret=sdgggskokererg4232404gc4csdgfdsgf8s8ck5s&username=admin&password=etondigital&grant_type=password
-Accept: */*
-Cache-Control: no-cache
-
-<> 2019-07-08T031017.404.json
-
-###
-
-POST http://todo-api.com/api/v1/oauth/token?client_id=1_5w8zrdasdafr4tregd454cw0c0kswcgs0oks40s&client_secret=sdgggskokererg4232404gc4csdgfdsgf8s8ck5s&username=admin&password=etondigital&grant_type=password
-Accept: */*
-Cache-Control: no-cache
-
-<> 2019-07-08T030736.404.json
-
-###
-
-POST http://todo-api.com/api/v1/oauth/v2/token?client_id=1_5w8zrdasdafr4tregd454cw0c0kswcgs0oks40s&client_secret=sdgggskokererg4232404gc4csdgfdsgf8s8ck5s&username=admin&password=etondigital&grant_type=password
-Accept: */*
-Cache-Control: no-cache
-
-<> 2019-07-08T030716.404.json
 
 ###
 

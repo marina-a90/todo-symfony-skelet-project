@@ -77,7 +77,7 @@ class MediaSerializerSubscriber implements EventSubscriberInterface
             $urls["fileName"] = $media->getName();
         }
 
-        $visitor->addData($fieldName, $urls);
+        $visitor->setData($fieldName, $urls);
     }
 
     /**
@@ -89,8 +89,6 @@ class MediaSerializerSubscriber implements EventSubscriberInterface
     {
         /** @var User $user */
         $user = $event->getObject();
-
-        dump('here'); exit;
 
         /** @var VisitorInterface $visitor */
         $visitor = $event->getVisitor();

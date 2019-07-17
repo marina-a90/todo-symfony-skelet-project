@@ -91,7 +91,7 @@ class UserRestController extends BaseRestController
             );
         }
 
-        return $this->ok($users, ['list']);
+        return $this->ok($users);
     }
 
     /**
@@ -677,13 +677,7 @@ class UserRestController extends BaseRestController
         $user = $this->getUser();
 
         if (empty($user)) {
-            return $this->forbidden(
-                $this->get('translator')->trans(
-                    'security.user.not_have_permission',
-                    [],
-                    'AppUser'
-                )
-            );
+            return $this->forbidden($this->get('translator')->trans('security.user.not_have_permission', [], 'AppUser'));
         }
 
         $this->denyAccessUnlessGranted(UserVoter::EDIT_USER, $user);
@@ -693,8 +687,7 @@ class UserRestController extends BaseRestController
         $oldMedia = $user->getPhoto();
 
         $form = $this->createForm(PhotoType::class, $user, [
-            'method' => Request::METHOD_POST,
-            'csrf_protection' => false
+            'method' => Request::METHOD_POST
         ]);
 
         $form->handleRequest($request);
@@ -714,33 +707,26 @@ class UserRestController extends BaseRestController
             }
 
 //            $photo = $data->getPhoto();
-//            dump($photo); exit;
+//            dump($data); exit;
 
 
 
 //            // dispatch the media event when the photo is created
-//            $event = new MediaEvent($data);
+//            $eventData = ['data' => $data];
+//            $event = new MediaEvent($eventData);
 //
 //            if ($this->eventDispatcher) {
 //                $this->eventDispatcher->dispatch(MediaEvent::PHOTO, $event);
 //            }
-//
+
 
             $userManager->save($data, true);
 
             return $this->created($data);
         }
 
-        return $this->bad($form);
+        return $this->bad($form, ['list']);
     }
-
-
-    // serial.
-    private function getUploadsDir()
-    {
-        return $this->getParameter('image');
-    }
-
 
     /**
      * Get entity manager

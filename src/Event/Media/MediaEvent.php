@@ -6,6 +6,7 @@ use Symfony\Component\EventDispatcher\Event;
 
 class MediaEvent extends Event
 {
+    private $context;
     private $data;
 
     const PHOTO = "photo.posted";

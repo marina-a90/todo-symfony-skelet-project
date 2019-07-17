@@ -38,14 +38,16 @@ class MediaSubscriber implements EventSubscriberInterface
     public function onPhotoPublished(MediaEvent $event)
     {
         /** @var User $user */
-        $user = $event->getData();
-
+        $user = $event->getData()['data'];
         $userPhoto = $user->getPhoto();
+
+        /** @var VisitorInterface $visitor */
+        $visitor = $event->getVisitor();
 
         if ( !empty($userPhoto) ) {
 
             $this->serialize(
-                $user,
+                $visitor,
                 $userPhoto,
                 'photo',
                 array('small', 'big')
