@@ -41,26 +41,15 @@ class TodoRestController extends BaseRestController
         /** @var User $user */
         $user = $this->getUser();
         if (!$user) {
-            return $this->forbidden(
-                $this->get('translator')->trans(
-                    'security.user.not_have_permission',
-                    [],
-                    'AppUser'
-                )
-            );
+
+            return $this->forbidden($this->get('translator')->trans('security.user.not_have_permission', [],'AppUser'));
         }
 
         /** @var Todo $todos */
         $todos = $this->getEntityManager()->findAll();
-
         if (!$todos) {
-            return $this->notFound(
-                $this->get('translator')->trans(
-                    'form.not_found_todos',
-                    [],
-                    'AppTodo'
-                )
-            );
+
+            return $this->notFound($this->get('translator')->trans('form.not_found_todos', [],'AppTodo'));
         }
 
         return $this->ok($todos, ['list']);
@@ -92,26 +81,16 @@ class TodoRestController extends BaseRestController
         /** @var User $user */
         $user = $this->getUser();
         if (!$user) {
-            return $this->forbidden(
-                $this->get('translator')->trans(
-                    'security.user.not_have_permission',
-                    [],
-                    'AppUser'
-                )
-            );
+
+            return $this->forbidden($this->get('translator')->trans('security.user.not_have_permission', [],'AppUser'));
         }
 
         /** @var Todo $todos */
         $todos = $this->getEntityManager()->findIncompleteTodos();
 
         if (!$todos) {
-            return $this->notFound(
-                $this->get('translator')->trans(
-                    'form.not_found_todos',
-                    [],
-                    'AppTodo'
-                )
-            );
+
+            return $this->notFound( $this->get('translator')->trans('form.not_found_todos', [],'AppTodo'));
         }
 
         return $this->ok($todos, ['list']);
@@ -143,28 +122,18 @@ class TodoRestController extends BaseRestController
         /** @var User $user */
         $user = $this->getUser();
         if (!$user) {
-            return $this->forbidden(
-                $this->get('translator')->trans(
-                    'security.user.not_have_permission',
-                    [],
-                    'AppUser'
-                )
-            );
+
+            return $this->forbidden($this->get('translator')->trans('security.user.not_have_permission', [],'AppUser'));
         }
 
         /** @var Todo $todo */
         $todo = $this->getEntityManager()->find($id);
         if (!$todo) {
-            return $this->notFound(
-                $this->get('translator')->trans(
-                    'form.not_found_todo',
-                    [],
-                    'AppTodo'
-                )
-            );
+
+            return $this->notFound($this->get('translator')->trans('form.not_found_todo', [],'AppTodo'));
         }
 
-        return $this->ok($todo, ['list']);
+        return $this->ok($todo, ['details']);
     }
 
 
@@ -203,21 +172,15 @@ class TodoRestController extends BaseRestController
         /** @var User $user */
         $user = $this->getUser();
         if (!$user) {
-            return $this->forbidden(
-                $this->get('translator')->trans(
-                    'security.user.not_have_permission',
-                    [],
-                    'AppUser'
-                )
-            );
+
+            return $this->forbidden( $this->get('translator')->trans('security.user.not_have_permission', [],'AppUser'));
         }
 
         /** @var Todo $todo */
         $todo = new Todo();
 
         $form = $this->createForm(TodoType::class, $todo, [
-            'method' => Request::METHOD_POST,
-            'csrf_protection' => false,
+            'method' => Request::METHOD_POST
         ]);
 
         $form->handleRequest($request);
@@ -226,7 +189,7 @@ class TodoRestController extends BaseRestController
             $em = $this->getEntityManager();
             $em->save($todo);
 
-            return $this->ok($todo, ['list']);
+            return $this->ok($todo, ['details']);
         }
 
         return $this->bad($form);
@@ -269,30 +232,19 @@ class TodoRestController extends BaseRestController
         /** @var User $user */
         $user = $this->getUser();
         if (!$user) {
-            return $this->forbidden(
-                $this->get('translator')->trans(
-                    'security.user.not_have_permission',
-                    [],
-                    'AppUser'
-                )
-            );
+
+            return $this->forbidden( $this->get('translator')->trans('security.user.not_have_permission',[],'AppUser'));
         }
 
         /** @var Todo $todo */
-        $todo = $this->todoRepository->findOneBy(['id' => $id]);
+        $todo = $this->getEntityManager()->findOneBy(['id' => $id]);
         if (!$todo) {
-            return $this->notFound(
-                $this->get('translator')->trans(
-                    'form.not_found_todo',
-                    [],
-                    'AppTodo'
-                )
-            );
+
+            return $this->notFound($this->get('translator')->trans('form.not_found_todo', [],'AppTodo'));
         }
 
         $form = $this->createForm(TodoType::class, $todo, [
-            'method' => Request::METHOD_PATCH,
-            'csrf_protection' => false,
+            'method' => Request::METHOD_PATCH
         ]);
 
         $form->handleRequest($request);
@@ -301,7 +253,7 @@ class TodoRestController extends BaseRestController
             $em = $this->getEntityManager();
             $em->save($todo);
 
-            return $this->ok($todo, ['list']);
+            return $this->ok($todo, ['details']);
         }
 
         return $this->bad($form);
@@ -333,25 +285,15 @@ class TodoRestController extends BaseRestController
         /** @var User $user */
         $user = $this->getUser();
         if (!$user) {
-            return $this->forbidden(
-                $this->get('translator')->trans(
-                    'security.user.not_have_permission',
-                    [],
-                    'AppUser'
-                )
-            );
+
+            return $this->forbidden($this->get('translator')->trans('security.user.not_have_permission', [],'AppUser'));
         }
 
         /** @var Todo $todo */
-        $todo = $this->todoRepository->find($id);
+        $todo = $this->getEntityManager()->find($id);
         if (!$todo) {
-            return $this->notFound(
-                $this->get('translator')->trans(
-                    'form.not_found_todo',
-                    [],
-                    'AppTodo'
-                )
-            );
+
+            return $this->notFound( $this->get('translator')->trans('form.not_found_todo', [],'AppTodo'));
         }
 
         $todo->setIsDone( !$todo->getIsDone() );
@@ -359,7 +301,7 @@ class TodoRestController extends BaseRestController
         $em = $this->getEntityManager();
         $em->save($todo);
 
-        return $this->ok($todo, ['list']);
+        return $this->ok($todo, ['details']);
     }
 
 
@@ -399,13 +341,8 @@ class TodoRestController extends BaseRestController
         /** @var Todo $todo */
         $todo = $this->getEntityManager()->find($id);
         if (!$todo) {
-            return $this->notFound(
-                $this->get('translator')->trans(
-                    'form.not_found_todo',
-                    [],
-                    'AppTodo'
-                )
-            );
+
+            return $this->notFound($this->get('translator')->trans('form.not_found_todo', [],'AppTodo'));
         }
 
         $em = $this->getEntityManager();

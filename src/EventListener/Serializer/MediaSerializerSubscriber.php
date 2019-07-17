@@ -52,20 +52,14 @@ class MediaSerializerSubscriber implements EventSubscriberInterface
      * @param string $fieldName
      * @param array $formats
      */
-    private function serialize(
-        VisitorInterface $visitor,
-        Media $media = null,
-        $fieldName,
-        array $formats
-    ) {
+    private function serialize(VisitorInterface $visitor, Media $media = null, $fieldName, array $formats)
+    {
         $urls = array();
         if ($media) {
             $url = null;
 
             foreach ($formats as $format) {
-                $url = $this->imageProvider->generatePublicUrl(
-                    $media,
-                    $this->imageProvider->getFormatName($media, $format)
+                $url = $this->imageProvider->generatePublicUrl($media, $this->imageProvider->getFormatName($media, $format)
                 );
 
                 if ($url) {
@@ -93,14 +87,10 @@ class MediaSerializerSubscriber implements EventSubscriberInterface
         /** @var VisitorInterface $visitor */
         $visitor = $event->getVisitor();
 
-        if ($event->getVisitor()->hasData('photo')) {
+        if ( $event->getVisitor()->hasData('photo') ) {
             $visitor->setData('photo', null);
-            $this->serialize(
-                $visitor,
-                $user->getPhoto(),
-                'photo',
-                array('small', 'big')
-            );
+
+            $this->serialize($visitor, $user->getPhoto(),'photo', array('small', 'big'));
         }
     }
 

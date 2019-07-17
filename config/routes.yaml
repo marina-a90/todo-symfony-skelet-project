@@ -13,6 +13,11 @@ user.user.rest.controller:
   type:     annotation
   prefix:   /api/v1
 
+user.photo.rest.controller:
+  resource: "Controller/User/UserPhotoRestController.php"
+  type:     annotation
+  prefix:   /api/v1
+
 user.oauth.rest.controller:
   resource: "Controller/User/OauthRestController.php"
   type:     annotation

@@ -86,13 +86,6 @@ services:
 # Sonata Media
     Sonata\MediaBundle\Provider\ImageProvider: '@sonata.media.provider.image'
 
-## Event Subscribers
-#    app.event.subscriber.media_event_subscriber:
-#        class: App\Event\Media\MediaSubscriber
-#        arguments: [ "@doctrine.orm.entity_manager" ]
-#        tags:
-#            - { name: kernel.event_subscriber }
-
 # Serializer
     app.media_serializer_subscriber:
         class: App\EventListener\Serializer\MediaSerializerSubscriber

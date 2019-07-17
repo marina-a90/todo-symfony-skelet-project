@@ -21,4 +21,4 @@ framework:
 
     translator: { fallbacks: ['%locale%'] }
 
-    validation: { enable_annotations: true }
+    validation: { enabled: true }

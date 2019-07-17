@@ -23,9 +23,6 @@ class Todo
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
-     *
-     * @JMS\Expose()
-     * @JMS\Groups({"details", "list"})
      */
     private $id;
 
@@ -41,7 +38,7 @@ class Todo
      * @ORM\Column(type="boolean")
      *
      * @JMS\Expose()
-     * @JMS\Groups({"details", "list"})
+     * @JMS\Groups("details")
      */
     private $isDone = false;
 

@@ -1,5 +1,4 @@
 <?php
-// src/Entity/User.php
 
 namespace App\Entity\User;
 
@@ -25,9 +24,6 @@ class User extends BaseUser
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
-     *
-     * @JMS\Expose()
-     * @JMS\Groups({"details", "list", "public"})
      */
     protected $id;
 
@@ -35,17 +31,12 @@ class User extends BaseUser
      * @ORM\Column(type="string", length=255)
      *
      * @JMS\Expose()
-     * @JMS\Groups({"details", "list", "public"})
+     * @JMS\Groups({"details", "list"})
      */
     private $name;
 
     /**
      * @var string
-     *
-     * @Assert\Email(
-     *     message = "The email '{{ value }}' is not a valid email.",
-     *     checkMX = true
-     * )
      */
     protected $email;
 
@@ -67,7 +58,7 @@ class User extends BaseUser
      * @ORM\ManyToOne(targetEntity="App\Application\Sonata\MediaBundle\Entity\Media", cascade={"persist"}, fetch="LAZY")
      *
      * @JMS\Expose()
-     * @JMS\Groups({"details", "list", "public", "short"})
+     * @JMS\Groups("details")
      */
     private $photo;
 

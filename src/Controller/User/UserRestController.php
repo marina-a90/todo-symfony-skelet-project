@@ -2,20 +2,14 @@
 
 namespace App\Controller\User;
 
-use App\Application\Sonata\MediaBundle\Entity\Media;
 use App\Controller\BaseRestController;
 use App\Entity\OAuth\Client;
 use App\Entity\User\User;
-use App\Event\Media\MediaEvent;
 use App\Form\Type\User\ChangePasswordFormType;
 use App\Form\Type\User\ConfirmRegistrationType;
 use App\Form\Type\User\ForgotPasswordType;
-use App\Form\Type\User\PhotoType;
 use App\Form\Type\User\ResettingType;
 use App\Form\Type\User\UserRegisterType;
-use App\Security\User\UserVoter;
-use App\Utils\Media\ApiUploadedFile;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 use FOS\UserBundle\Event\FilterUserResponseEvent;
 use FOS\UserBundle\Event\FormEvent;
 use FOS\UserBundle\Event\GetResponseUserEvent;
@@ -69,29 +63,18 @@ class UserRestController extends BaseRestController
         /** @var User $user */
         $user = $this->getUser();
         if (!$user) {
-            return $this->forbidden(
-                $this->get('translator')->trans(
-                    'security.user.not_have_permission',
-                    [],
-                    'AppUser'
-                )
-            );
+
+            return $this->forbidden($this->get('translator')->trans('security.user.not_have_permission', [],'AppUser'));
         }
 
         /** @var User $users */
         $users = $this->getEntityManager()->findAll();
-
         if (!$users) {
-            return $this->notFound(
-                $this->get('translator')->trans(
-                    'security.user.no_users',
-                    [],
-                    'AppUser'
-                )
-            );
+
+            return $this->notFound($this->get('translator')->trans('security.user.no_users', [],'AppUser'));
         }
 
-        return $this->ok($users);
+        return $this->ok($users, ["list"]);
     }
 
     /**
@@ -129,16 +112,11 @@ class UserRestController extends BaseRestController
         $user = $this->getUser();
 
         if (!$user) {
-            return $this->notFound(
-                $this->get('translator')->trans(
-                    'security.user.not_logged_in',
-                    [],
-                    'AppUser'
-                )
-            );
+
+            return $this->notFound($this->get('translator')->trans('security.user.not_logged_in', [],'AppUser'));
         }
 
-        return $this->ok($user, ['list']);
+        return $this->ok($user, ["details"]);
     }
 
     /**
@@ -174,13 +152,8 @@ class UserRestController extends BaseRestController
         /** @var User $user */
         $user = $this->getUser();
         if ($user) {
-            return $this->forbidden(
-                $this->get('translator')->trans(
-                    'security.user.registration_ban',
-                    [],
-                    'AppUser'
-                )
-            );
+
+            return $this->forbidden($this->get('translator')->trans('security.user.registration_ban', [],'AppUser'));
         }
 
         $dispatcher = $this->get('event_dispatcher');
@@ -201,20 +174,20 @@ class UserRestController extends BaseRestController
 
         $form = $this->createForm(UserRegisterType::class, $user, [
             'method' => Request::METHOD_POST,
-            'csrf_protection' => false,
         ]);
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
             $event = new FormEvent($form, $request);
             $dispatcher->dispatch(FOSUserEvents::REGISTRATION_SUCCESS, $event);
             $em->update($user);
 
-            return $this->ok($user, ['list']);
+            return $this->ok($user, ["details"]);
         }
 
-        return $this->bad($form);
+        return $this->bad($form, ["details"]);
     }
 
     /**
@@ -247,63 +220,45 @@ class UserRestController extends BaseRestController
     {
         $form = $this->createForm(ConfirmRegistrationType::class, null, [
             'method' => Request::METHOD_PATCH,
-            'csrf_protection' => false,
         ]);
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
             $oauthService = $this->get('fos_oauth_server.server');
             /** @var Client $client */
             $client = $oauthService->getClient($form['client_id']->getData());
-
-            if (empty($client)) {
-                return $this->bad([
-                    'message' => $this->get('translator')->trans(
-                        'application.token.invalid_client_id',
-                        [],
-                        'AppUser'
-                    ),
-                ]);
-            }
-
-            if (!$oauthService->validateClientCredentials($client, $client->getSecret())) {
-                return $this->bad([
-                    'message' => $this->get('translator')->trans(
-                        'application.token.invalid_credentials',
-                        [],
-                        'AppUser'
-                    ),
-                ]);
-            }
-
             $token = $form['token']->getData();
+
+            if ( empty($client) ) {
+
+                return $this->bad($this->get('translator')->trans('application.token.invalid_client_id', [],'AppUser'));
+            }
+
+            if ( !$oauthService->validateClientCredentials($client, $client->getSecret()) ) {
+
+                return $this->bad($this->get('translator')->trans('application.token.invalid_credentials', [],'AppUser'));
+            }
+
             if (empty($token)) {
-                return $this->bad([
-                    'message' => $this->get('translator')->trans(
-                        'registration.token.not_valid',
-                        [],
-                        'AppUser'
-                    ),
-                ]);
+
+                return $this->bad($this->get('translator')->trans('registration.token.not_valid', [],'AppUser'));
             }
 
             $userManager = $this->getEntityManager();
 
             /** @var User $user */
             $user = $userManager->findByToken($token);
-
             if (null === $user) {
-                return $this->notFound($this->get('translator')->trans(
-                    'registration.token.not_valid',
-                    [],
-                    'AppUser'
-                ));
+
+                return $this->notFound($this->get('translator')->trans('registration.token.not_valid', [],'AppUser'));
             }
 
             // check 24 hrs activation link
             if (!$user->isEnabled()) {
                 if (strtotime($user->getCreatedAt()->format('Y-m-d H:i:s')) < strtotime('-1 day')) {
+
                     return $this->bad(['message' => 'Activation link has been expired']);
                 }
             }
@@ -320,10 +275,7 @@ class UserRestController extends BaseRestController
 
             $token = $oauthService->createAccessToken($client, $user);
 
-            $view = $this->ok([
-                'user' => $user,
-                'token' => $token,
-            ], ["details"]);
+            $view = $this->ok(['user' => $user, 'token' => $token], ["details"]);
         } else {
             $view = $this->bad($form);
         }
@@ -358,14 +310,15 @@ class UserRestController extends BaseRestController
      *      @SWG\Tag(name="user")
      *  )
      * @param Request $request
+     * @param TokenGeneratorInterface $tokenGenerator
      *
      * @return View
+     * @throws
      */
     public function patchUsersForgotAction(Request $request, TokenGeneratorInterface $tokenGenerator)
     {
         $form = $this->createForm(ForgotPasswordType::class, null, [
-            'method' => Request::METHOD_PATCH,
-            'csrf_protection' => false,
+            'method' => Request::METHOD_PATCH
         ]);
 
         $userManager = $this->getEntityManager();
@@ -376,30 +329,19 @@ class UserRestController extends BaseRestController
             $user = $userManager->findUserByUsernameOrEmail($email);
 
             if (null === $user) {
-                return $this->notFound($this->get('translator')->trans(
-                    'resetting.password.already_requested',
-                    [],
-                    'AppUser'
-                ));
+
+                return $this->notFound($this->get('translator')->trans('resetting.password.already_requested', [],'AppUser'));
             }
 
             if ($user->isPasswordRequestNonExpired($this->getParameter('fos_user.resetting.token_ttl'))) {
-                return $this->bad([
-                    'message' => $this->get('translator')->trans(
-                        'resetting.password.already_requested',
-                        [],
-                        'AppUser'
-                    ),
-                ]);
+
+                return $this->bad($this->get('translator')->trans('resetting.password.already_requested', [],'AppUser'));
             }
 
             if (null === $user->getConfirmationToken()) {
                 if (!$user->isEnabled()) {
-                    return $this->bad($this->get('translator')->trans(
-                        'resetting.password.account_disabled',
-                        [],
-                        'AppUser'
-                    ));
+
+                    return $this->bad($this->get('translator')->trans('resetting.password.account_disabled', [],'AppUser'));
                 }
                 $user->setConfirmationToken($tokenGenerator->generateToken());
             }
@@ -409,14 +351,10 @@ class UserRestController extends BaseRestController
             $user->setPasswordRequestedAt(new \DateTime());
             $userManager->update($user);
 
-            return $this->ok([
-                'message' => $this->get('translator')->trans(
-                    'message.resetting.request',
-                    [],
-                    'AppUser'
-                )
-            ]);
+            return $this->ok($this->get('translator')->trans('message.resetting.request', [],'AppUser'));
+
         } else {
+
             return $this->bad($form);
         }
     }
@@ -467,20 +405,14 @@ class UserRestController extends BaseRestController
         $user = $userManager->findByToken($token);
 
         if (null === $user) {
-            return $this->notFound($this->get('translator')->trans(
-                'registration.token.not_valid',
-                [],
-                'AppUser'
-            ));
+
+            return $this->notFound($this->get('translator')->trans('registration.token.not_valid', [],'AppUser'));
         }
 
         $event = new GetResponseUserEvent($user, $request);
         if (!$user->isPasswordRequestNonExpired($this->getParameter('fos_user.resetting.token_ttl'))) {
-            return $this->bad($this->get('translator')->trans(
-                'resetting.password.token_expired',
-                [],
-                'AppUser'
-            ));
+
+            return $this->bad($this->get('translator')->trans('resetting.password.token_expired', [],'AppUser'));
         }
 
         if (null !== $event->getResponse()) {
@@ -488,35 +420,25 @@ class UserRestController extends BaseRestController
         }
 
         $form = $this->createForm(ResettingType::class, $user, [
-            'method' => Request::METHOD_PATCH,
-            'csrf_protection' => false,
+            'method' => Request::METHOD_PATCH
         ]);
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
             $oauthService = $this->get('fos_oauth_server.server');
+
             /** @var Client $client */
             $client = $oauthService->getClient($form['client_id']->getData());
 
             if (empty($client)) {
-                return $this->bad([
-                    'message' => $this->get('translator')->trans(
-                        'application.token.invalid_client_id',
-                        [],
-                        'AppUser'
-                    ),
-                ]);
+                return $this->bad($this->get('translator')->trans('application.token.invalid_client_id', [],'AppUser'));
             }
 
             if (!$oauthService->validateClientCredentials($client, $client->getSecret())) {
-                return $this->bad([
-                    'message' => $this->get('translator')->trans(
-                        'application.token.invalid_credentials',
-                        [],
-                        'AppUser'
-                    ),
-                ]);
+
+                return $this->bad($this->get('translator')->trans('application.token.invalid_credentials', [],'AppUser'));
             }
 
             $event = new FormEvent($form, $request);
@@ -525,21 +447,22 @@ class UserRestController extends BaseRestController
             $userManager->update($user);
 
             if (null === $response = $event->getResponse()) {
+
                 $response = new Response();
             }
 
-            $dispatcher->dispatch(
-                FOSUserEvents::RESETTING_RESET_COMPLETED,
-                new FilterUserResponseEvent($user, $request, $response)
-            );
+            $dispatcher->dispatch(FOSUserEvents::RESETTING_RESET_COMPLETED, new FilterUserResponseEvent($user, $request, $response));
 
             $token = $oauthService->createAccessToken($client, $user);
 
-            return $this->ok([
+            return $this->ok(
+                [
                 'user' => $user,
                 'token' => $token,
-            ], ["details"]);
+            ]
+                , ["details"]);
         } else {
+
             return $this->bad($form);
         }
     }
@@ -584,13 +507,8 @@ class UserRestController extends BaseRestController
     {
         $user = $this->getUser();
         if (!$user) {
-            return $this->forbidden(
-                $this->get('translator')->trans(
-                    'security.user.not_have_permission',
-                    [],
-                    'AppUser'
-                )
-            );
+
+            return $this->forbidden($this->get('translator')->trans('security.user.not_have_permission', [],'AppUser'));
         }
 
         $dispatcher = $this->get('event_dispatcher');
@@ -600,12 +518,12 @@ class UserRestController extends BaseRestController
         $dispatcher->dispatch(FOSUserEvents::CHANGE_PASSWORD_INITIALIZE, $event);
 
         if (null !== $event->getResponse()) {
+
             return $this->bad();
         }
 
         $form = $this->createForm(ChangePasswordFormType::class, $user, [
             'method' => Request::METHOD_PATCH,
-            'csrf_protection' => false,
             'block_name' => '',
         ]);
 
@@ -618,100 +536,17 @@ class UserRestController extends BaseRestController
             $userManager->update($user);
 
             if (null === $response = $event->getResponse()) {
+
                 $response = new Response();
             }
 
-            $dispatcher->dispatch(
-                FOSUserEvents::CHANGE_PASSWORD_COMPLETED,
-                new FilterUserResponseEvent($user, $request, $response)
-            );
+            $dispatcher->dispatch(FOSUserEvents::CHANGE_PASSWORD_COMPLETED, new FilterUserResponseEvent($user, $request, $response));
 
             return $this->ok($user);
         } else {
 
             return $this->bad($form);
         }
-    }
-
-    /**
-     * Set user photo action.
-     *
-     * @Route("/user/photo", methods={"POST"})
-     *
-     * @SWG\Post(
-     *     tags={"User Photo"},
-     *     summary="User photo",
-     *     description="User photo",
-     *     consumes={"multipart/form-data"},
-     *     produces={"*", "application/json"},
-     *     @SWG\Parameter(
-     *         name="photo[binaryContent]",
-     *         in="formData",
-     *         type="file",
-     *         required=false,
-     *         format="multipart/form-data",
-     *         description="The field is used to save the photo"
-     *     ),
-     *     @SWG\Response(
-     *          response=201,
-     *          description="Success",
-     *          @SWG\Schema(ref=@Model(type=User::class))
-     *      ),
-     *      @SWG\Response(
-     *          response=400, description="Data is invalid"
-     *      ),
-     *      @SWG\Tag(name="user"),
-     *      @SWG\SecurityScheme(
-     *         securityDefinition="Bearer",
-     *         type="apiKey",
-     *         name="Authorization",
-     *         in="header"
-     *     )
-     *  )
-     * @param Request $request
-     *
-     * @return View
-     */
-    public function postUserPhotoAction(Request $request)
-    {
-        $user = $this->getUser();
-
-        if (empty($user)) {
-            return $this->forbidden($this->get('translator')->trans('security.user.not_have_permission', [], 'AppUser'));
-        }
-
-        $this->denyAccessUnlessGranted(UserVoter::EDIT_USER, $user);
-
-        // check if the user already has a photo
-        /** @var Media $oldMedia */
-        $oldMedia = $user->getPhoto();
-
-        $form = $this->createForm(PhotoType::class, $user, [
-            'method' => Request::METHOD_POST
-        ]);
-
-        $form->handleRequest($request);
-
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $data = $form->getData();
-            $userManager = $this->getEntityManager();
-
-            if ($oldMedia) {
-                $mediaManager = $this->get('sonata.media.manager.media');
-
-                // delete old user photo before posting a new one
-                $provider = $this->get($oldMedia->getProviderName());
-                $provider->removeThumbnails($oldMedia);
-                $mediaManager->delete($oldMedia);
-            }
-
-            $userManager->save($data, true);
-
-            return $this->created($data, ['list']);
-        }
-
-        return $this->bad($form, ['list']);
     }
 
     /**
