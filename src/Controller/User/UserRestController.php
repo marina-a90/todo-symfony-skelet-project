@@ -706,23 +706,9 @@ class UserRestController extends BaseRestController
                 $mediaManager->delete($oldMedia);
             }
 
-//            $photo = $data->getPhoto();
-//            dump($data); exit;
-
-
-
-//            // dispatch the media event when the photo is created
-//            $eventData = ['data' => $data];
-//            $event = new MediaEvent($eventData);
-//
-//            if ($this->eventDispatcher) {
-//                $this->eventDispatcher->dispatch(MediaEvent::PHOTO, $event);
-//            }
-
-
             $userManager->save($data, true);
 
-            return $this->created($data);
+            return $this->created($data, ['list']);
         }
 
         return $this->bad($form, ['list']);

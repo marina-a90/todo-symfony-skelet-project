@@ -79,9 +79,12 @@
                             {% for key, value in users %}
                                 <li>
                                     <div>
-                                    {% set _profile_uri = path('admin_app_user_user_show', {'id': value.id}) %}
+                                    {% set _user_uri = path('admin_app_user_user_show', {'id': value.id}) %}
+                                    <a href="{{ _user_uri }}">
+                                        <img width="80px" src="{{ asset ('images/icon-avatar-m.svg') }}" class="img-circle" alt="User Image">
+                                    </a>
                                     </div>
-                                    <a class="users-list-name" href="{{ _profile_uri }}">{{ value.name }}</a>
+                                    <a class="users-list-name" href="{{ _user_uri }}">{{ value.name }}</a>
                                     <span class="users-list-date users-list-name" style="color: grey">{{ value.createdAt|date("F j, Y H:i") }}</span>
                                 </li>
                             {% endfor %}
