@@ -92,8 +92,6 @@ class UserPhotoRestController extends BaseRestController
 
             if ($oldMedia) {
                 $mediaManager = $this->get('sonata.media.manager.media');
-
-                // delete old user photo before posting a new one
                 $provider = $this->get($oldMedia->getProviderName());
                 $provider->removeThumbnails($oldMedia);
                 $mediaManager->delete($oldMedia);
@@ -128,7 +126,7 @@ class UserPhotoRestController extends BaseRestController
      *
      * @return View
      */
-    public function putToggleIsDoneTodoAction(Request $request, $id)
+    public function putUserPhotoRemoveAction(Request $request, $id)
     {
         /** @var User $user */
         $user = $this->getUser();
