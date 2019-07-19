@@ -46,11 +46,11 @@ class User extends BaseUser
     private $deleted = 0;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @var bool
      *
-     * @Assert\NotNull
+     * @ORM\Column(type="boolean")
      */
-    private $terms = false;
+    private $terms;
 
     /**
      * @var Media
@@ -99,6 +99,9 @@ class User extends BaseUser
         return $this;
     }
 
+    /**
+     * @return bool
+     */
     public function getTerms()
     {
         return $this->terms;

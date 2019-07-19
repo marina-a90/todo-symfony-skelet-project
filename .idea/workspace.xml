@@ -2,10 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="40f90aa0-8b31-4080-957e-de34dcd91607" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/2019-07-08T031701.404.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/nginx/todo.dev_access.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/nginx/todo.dev_access.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/logs/nginx/todo.dev_error.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/nginx/todo.dev_error.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/User/UserPhotoRestController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/User/UserPhotoRestController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/User/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/User/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Form/Type/User/UserRegisterType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/Type/User/UserRegisterType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Resources/translations/validators.en.yml" beforeDir="false" afterPath="$PROJECT_DIR$/translations/validators.en.yml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.idea/httpRequests/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -39,14 +41,53 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/Controller/User/UserPhotoRestController.php">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/translations/validators.en.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-525">
+              <caret line="19" column="84" selection-start-line="19" selection-start-column="84" selection-end-line="19" selection-end-column="84" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Controller/User/UserRestController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="299">
+              <caret line="165" column="56" selection-start-line="155" selection-start-column="36" selection-end-line="155" selection-end-column="115" />
+              <folding>
+                <element signature="e#39#77#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Resources/translations/AppUser.en.yml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="510">
-              <caret line="98" column="13" selection-start-line="98" selection-start-column="13" selection-end-line="98" selection-end-column="13" />
+              <caret line="34" column="5" selection-start-line="34" selection-end-line="34" selection-end-column="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Form/Type/User/UserRegisterType.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="445">
+              <caret line="68" column="39" lean-forward="true" selection-start-line="68" selection-start-column="39" selection-end-line="68" selection-end-column="39" />
               <folding>
-                <element signature="e#39#91#0#PHP" expanded="true" />
+                <element signature="e#38#82#0#PHP" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Entity/User/User.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="445">
+              <caret line="64" column="33" selection-start-line="64" selection-start-column="33" selection-end-line="64" selection-end-column="33" />
             </state>
           </provider>
         </entry>
@@ -55,8 +96,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>classif</find>
-      <find>ParamFetcher</find>
       <find>$media = new Media();</find>
       <find>secur</find>
       <find>ser</find>
@@ -85,6 +124,8 @@
       <find>$class</find>
       <find>$code</find>
       <find>class</find>
+      <find>regis</find>
+      <find>user/register</find>
     </findStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$/config</dir>
@@ -95,13 +136,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="dummy://restClient/response21.json" root0="SKIP_INSPECTION" />
-  </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/Service/Manager/User/UserManager.php" />
         <option value="$PROJECT_DIR$/docker-compose.yml" />
         <option value="$PROJECT_DIR$/src/Service/BlocksAdminService.php" />
         <option value="$PROJECT_DIR$/templates/base.email.twig" />
@@ -138,7 +175,6 @@
         <option value="$PROJECT_DIR$/templates/admin/block/userBlock.html.twig" />
         <option value="$PROJECT_DIR$/templates/admin/Dashboard/blocks.html.twig" />
         <option value="$PROJECT_DIR$/src/Resources/config/serializer/FOSUB/Model.User.yml" />
-        <option value="$PROJECT_DIR$/src/Entity/User/User.php" />
         <option value="$PROJECT_DIR$/config/services.yaml" />
         <option value="$PROJECT_DIR$/src/Controller/User/UserPhotoController.php" />
         <option value="$PROJECT_DIR$/config/routes.yaml" />
@@ -152,6 +188,8 @@
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/src/Admin/ContactPageAdmin.php" />
         <option value="$PROJECT_DIR$/src/Controller/User/UserPhotoRestController.php" />
+        <option value="$PROJECT_DIR$/src/Entity/User/User.php" />
+        <option value="$PROJECT_DIR$/src/Form/Type/User/UserRegisterType.php" />
       </list>
     </option>
   </component>
@@ -323,7 +361,8 @@
       <path value="$PROJECT_DIR$/vendor/bin/.phpunit" />
     </include_path>
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="y" value="-1" />
     <option name="width" value="1920" />
     <option name="height" value="1040" />
   </component>
@@ -342,41 +381,6 @@
               <item name="to-do" type="b2602c69:ProjectViewProjectNode" />
               <item name="to-do" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="to-do" type="b2602c69:ProjectViewProjectNode" />
-              <item name="to-do" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="to-do" type="b2602c69:ProjectViewProjectNode" />
-              <item name="to-do" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Admin" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="to-do" type="b2602c69:ProjectViewProjectNode" />
-              <item name="to-do" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Entity" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="to-do" type="b2602c69:ProjectViewProjectNode" />
-              <item name="to-do" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Entity" type="462c0819:PsiDirectoryNode" />
-              <item name="Pages" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="to-do" type="b2602c69:ProjectViewProjectNode" />
-              <item name="to-do" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="to-do" type="b2602c69:ProjectViewProjectNode" />
-              <item name="to-do" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="admin" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -387,24 +391,24 @@
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/vendor" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../sn-polls-api" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/Resources/translations" />
-      <recent name="$PROJECT_DIR$/translations" />
-      <recent name="$PROJECT_DIR$/src" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/vendor" />
       <recent name="$PROJECT_DIR$/public/images" />
       <recent name="$PROJECT_DIR$/src/Resources" />
       <recent name="$PROJECT_DIR$/public" />
       <recent name="$PROJECT_DIR$/src/EventListener" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/translations" />
+      <recent name="$PROJECT_DIR$/src/Resources/translations" />
+      <recent name="$PROJECT_DIR$/src" />
     </key>
   </component>
   <component name="RestClientSettings">
@@ -812,11 +816,17 @@
       <workItem from="1562664109178" duration="41926000" />
       <workItem from="1562925440149" duration="2668000" />
       <workItem from="1562932270899" duration="9307000" />
+      <workItem from="1563436323393" duration="52000" />
+      <workItem from="1563436544154" duration="41000" />
+      <workItem from="1563436684043" duration="6000" />
+      <workItem from="1563438150975" duration="1348000" />
+      <workItem from="1563453691600" duration="31000" />
+      <workItem from="1563541111198" duration="2686000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="223805000" />
+    <option name="totallyTimeSpent" value="228529000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -828,10 +838,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1920" height="1040" extended-state="0" />
+    <frame x="0" y="-1" width="1920" height="1040" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49827588" visible="true" weight="0.226254" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49827588" visible="true" weight="0.24226254" />
       <window_info id="Structure" order="1" sideWeight="0.5017241" side_tool="true" weight="0.2524013" />
       <window_info id="Favorites" order="2" sideWeight="0.5017241" side_tool="true" weight="0.2524013" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -844,8 +854,8 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.3286026" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
-      <window_info active="true" anchor="bottom" id="REST Client" order="10" visible="true" weight="0.34934497" />
-      <window_info anchor="bottom" id="Terminal" order="11" weight="0.3286026" />
+      <window_info anchor="bottom" id="REST Client" order="10" weight="0.34934497" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.3286026" />
       <window_info anchor="bottom" id="Event Log" order="12" side_tool="true" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -892,133 +902,20 @@
     </option>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/config/services.yaml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="89" column="36" selection-start-line="89" selection-start-column="36" selection-end-line="89" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Entity/Todo/Todo.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="570">
-          <caret line="40" column="29" selection-start-line="40" selection-start-column="29" selection-end-line="40" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Form/Type/Todo/TodoType.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-129">
-          <caret line="12" column="6" selection-start-line="12" selection-start-column="6" selection-end-line="12" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/routes.yaml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="27" column="16" selection-start-line="27" selection-start-column="16" selection-end-line="27" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Entity/User/User.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="59" column="20" selection-start-line="59" selection-start-column="20" selection-end-line="59" selection-end-column="20" />
-          <folding>
-            <element signature="e#58#110#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/symfony/security-bundle/Tests/Functional/app/FirewallEntryPoint/config.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="12" selection-start-line="8" selection-start-column="12" selection-end-line="8" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/packages/framework.yaml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="23" column="33" selection-start-line="23" selection-start-column="33" selection-end-line="23" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/routes/annotations.yaml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Security/User/UserVoter.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="26" column="40" selection-start-line="26" selection-start-column="40" selection-end-line="26" selection-end-column="40" />
-          <folding>
-            <element signature="e#37#109#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/User/UserRestController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5613">
-          <caret line="517" column="67" selection-start-line="517" selection-start-column="67" selection-end-line="517" selection-end-column="67" />
-          <folding>
-            <element signature="e#39#77#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/uploads/media/user_photo/0001/01/d18bb2d3b65e4c2fb7ea59f9327c83dea6ae1645.jpeg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/uploads/media/user_photo/0001/01/c7ffe42c94f5a21df588c008c7f8c8cbb5cb0929.jpeg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/uploads/media/user_photo/0001/01/thumb_84_user_photo_small.jpeg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/uploads/media/user_photo/0001/01/thumb_84_admin.jpeg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/uploads/media/user_photo/0001/01/2b72484fa001b5bf1819e2922a2211ed43ac1eeb.jpeg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/uploads/media/user_photo/0001/01/4b3ce500962bbbfea084e92dcaabe899f8f1ad1e.jpeg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/uploads/media/user_photo/0001/01/71cff3a96bf6d3df375e452e551510708f88a26b.jpeg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/uploads/media/user_photo/0001/01/381c4a1b9e7f81fb56324754bcd2cd20ce4769a7.jpeg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/uploads/media/user_photo/0001/01/612e3c1e1d7216d05addd9f97aec9664ee9ce073.jpeg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/uploads/media/user_photo/0001/01/94793dfc9e8eb855f111c7cf20792363cc51ccbc.jpeg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/uploads/media/user_photo/0001/01/803767d9cf57ef42c39cb607519af7e5b6cf6377.jpeg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/uploads/media/user_photo/0001/01/9275952affc7ba78137e73f6962c4cd710e16ea0.jpeg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/uploads/media/user_photo/0001/01/a2ebc3f2761d21b177c3f2149f2c46f14e202080.jpeg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/uploads/media/user_photo/0001/01/b2b39ed63f020c30c25e28052a3d7953a45c84ce.jpeg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/uploads/media/user_photo/0001/01/bf2fbe824707bf4190572c00bce81f2be9b820ed.jpeg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/uploads/media/user_photo/0001/01/ac08dea408e3ea17f184797e7817517197e7d08c.jpeg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/public/uploads/media/user_photo/0001/01/thumb_84_user_photo_small.jpeg" />
+    <entry file="file://$PROJECT_DIR$/public/uploads/media/user_photo/0001/01/thumb_84_admin.jpeg" />
+    <entry file="file://$PROJECT_DIR$/public/uploads/media/user_photo/0001/01/2b72484fa001b5bf1819e2922a2211ed43ac1eeb.jpeg" />
+    <entry file="file://$PROJECT_DIR$/public/uploads/media/user_photo/0001/01/4b3ce500962bbbfea084e92dcaabe899f8f1ad1e.jpeg" />
+    <entry file="file://$PROJECT_DIR$/public/uploads/media/user_photo/0001/01/71cff3a96bf6d3df375e452e551510708f88a26b.jpeg" />
+    <entry file="file://$PROJECT_DIR$/public/uploads/media/user_photo/0001/01/381c4a1b9e7f81fb56324754bcd2cd20ce4769a7.jpeg" />
+    <entry file="file://$PROJECT_DIR$/public/uploads/media/user_photo/0001/01/612e3c1e1d7216d05addd9f97aec9664ee9ce073.jpeg" />
+    <entry file="file://$PROJECT_DIR$/public/uploads/media/user_photo/0001/01/94793dfc9e8eb855f111c7cf20792363cc51ccbc.jpeg" />
+    <entry file="file://$PROJECT_DIR$/public/uploads/media/user_photo/0001/01/803767d9cf57ef42c39cb607519af7e5b6cf6377.jpeg" />
+    <entry file="file://$PROJECT_DIR$/public/uploads/media/user_photo/0001/01/9275952affc7ba78137e73f6962c4cd710e16ea0.jpeg" />
+    <entry file="file://$PROJECT_DIR$/public/uploads/media/user_photo/0001/01/a2ebc3f2761d21b177c3f2149f2c46f14e202080.jpeg" />
+    <entry file="file://$PROJECT_DIR$/public/uploads/media/user_photo/0001/01/b2b39ed63f020c30c25e28052a3d7953a45c84ce.jpeg" />
+    <entry file="file://$PROJECT_DIR$/public/uploads/media/user_photo/0001/01/bf2fbe824707bf4190572c00bce81f2be9b820ed.jpeg" />
+    <entry file="file://$PROJECT_DIR$/public/uploads/media/user_photo/0001/01/ac08dea408e3ea17f184797e7817517197e7d08c.jpeg" />
     <entry file="file://$PROJECT_DIR$/src/EventListener/Serializer/MediaSerializerSubscriber.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="246">
@@ -1146,13 +1043,6 @@
     <entry file="file://$PROJECT_DIR$/public/bundles/sonataadmin/treeview.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/cc">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/vendor/sonata-project/admin-bundle/src/Admin/AbstractAdmin.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1934">
@@ -1187,12 +1077,103 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/User/UserPhotoRestController.php">
+    <entry file="file://$PROJECT_DIR$/docker/php/Dockerfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-401" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/translations/security.en.xlf">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/cc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/composer.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="510">
-          <caret line="98" column="13" selection-start-line="98" selection-start-column="13" selection-end-line="98" selection-end-column="13" />
+          <caret line="65" column="9" lean-forward="true" selection-start-line="65" selection-start-column="9" selection-end-line="65" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docker/nginx/site.conf">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="29" selection-start-line="29" selection-end-line="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/parameters.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" selection-start-line="9" selection-end-line="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.env">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="22" column="33" selection-start-line="22" selection-start-column="33" selection-end-line="22" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Form/Transformer/UserToSlugTransformer.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="10" column="6" selection-start-line="10" selection-start-column="6" selection-end-line="10" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/User/UserPhotoRestController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="535">
+          <caret line="119" column="26" selection-start-line="119" selection-start-column="26" selection-end-line="119" selection-end-column="26" />
           <folding>
             <element signature="e#39#91#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/translations/validators.en.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-525">
+          <caret line="19" column="84" selection-start-line="19" selection-start-column="84" selection-end-line="19" selection-end-column="84" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Resources/translations/AppUser.en.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="34" column="5" selection-start-line="34" selection-end-line="34" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Entity/User/User.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="445">
+          <caret line="64" column="33" selection-start-line="64" selection-start-column="33" selection-end-line="64" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/User/UserRestController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="299">
+          <caret line="165" column="56" selection-start-line="155" selection-start-column="36" selection-end-line="155" selection-end-column="115" />
+          <folding>
+            <element signature="e#39#77#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Form/Type/User/UserRegisterType.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="445">
+          <caret line="68" column="39" lean-forward="true" selection-start-line="68" selection-start-column="39" selection-end-line="68" selection-end-column="39" />
+          <folding>
+            <element signature="e#38#82#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -79,7 +79,7 @@ class UserRegisterType extends MasterUserType
         $resolver->setDefaults(array(
             'data_class' => User::class,
             'csrf_protection' => false,
-            'translation_domain' => 'AppUser',
+            'translation_domain' => 'validators',
         ));
     }
 
